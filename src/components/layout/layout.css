@@ -93,6 +93,7 @@ display: flex-column;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+
 }
 .navbar1 {
   width: 100%;

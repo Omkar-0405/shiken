@@ -9,9 +9,11 @@ const LoginForm = (props) => {
   return (
 
     <div>
+     
       <Layout>
-        <h1> LoginForm</h1>
+        <h1> Login Form</h1>    
       </Layout>
+
     </div>
   )
 
