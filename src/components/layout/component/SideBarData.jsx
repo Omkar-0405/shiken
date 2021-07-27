@@ -12,4 +12,9 @@ export const SideBarData = [
     icon: <FaInfoCircle size={22} />,
     link: "/login",
   },
+  {
+    title: "View Details",
+    icon: <FaInfoCircle size={22} />,
+    link: "/form",
+  },
 ];

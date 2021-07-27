@@ -1,20 +1,54 @@
-import React from 'react'
-import Layout from '../../components/layout/Layout'
-/**
-* @author
-* @function LoginForm
-**/
+import React, { useState } from "react";
+import FacultyForm from "./FacultyForm";
+import "./LoginForm.css";
+import StudentForm from "./StudentForm";
 
-const LoginForm = (props) => {
+const LoginForm = () => {
+  const [toggle, settoggle] = useState(true);
+
+  const toggleHandlerFaculty = () => {
+    settoggle(false);
+  };
+
+  const toggleHandlerStudent = () => {
+    settoggle(true);
+  };
+
+  const formHandler = () => {
+    if (toggle) {
+      return <StudentForm />;
+    } else {
+      return <FacultyForm />;
+    }
+  };
+
   return (
-
-    <div>
-      <Layout>
-        <h1> LoginForm</h1>
-      </Layout>
+    <div className="login-form">
+      <h1>RAIT EXAM SOFTWARE</h1>
+      <div className="container">
+        <div className="main">
+          <div className="form-img">
+            <img
+              src="https://pbs.twimg.com/profile_images/1126020755739762688/lYBMKeYy.png"
+              alt=""
+            />
+          </div>
+          <div className="content">
+            <h2>Login</h2>
+            <div className="choices">
+              <button onClick={toggleHandlerStudent} className="btn-1">
+                Student
+              </button>
+              <button onClick={toggleHandlerFaculty} className="btn-1">
+                Faculty
+              </button>
+            </div>
+            {formHandler()}
+          </div>
+        </div>
+      </div>
     </div>
-  )
+  );
+};
 
-}
-
-export default LoginForm
+export default LoginForm;
