@@ -3,6 +3,8 @@ import './App.css';
 import Home from "./containers/home/Home";
 import LoginForm from "./containers/login/LoginForm";
 import { ViewForm } from "./containers/viewForm/ViewForm";
+import ExamForm from "./pages/examForm/ExamForm";
+
 function App() {
   return (
     <div className="App">
@@ -11,6 +13,7 @@ function App() {
            {/* public route */}
           <Route path="/" exact component={Home} />
           <Route path="/login" exact component={LoginForm} />
+          <Route path="/form"  component={ExamForm} /> 
           <Route path="/details"  component={ViewForm} /> 
           {/* route of id of particular student for verification and edit */}
         </Switch>

@@ -1,0 +1,185 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.login-form {
+  position: relative;
+  min-height: 100vh;
+  z-index: 0;
+  background: url("https://png.pngtree.com/thumb_back/fw800/back_our/20190625/ourmid/pngtree-minimalistic-geometrical-atmosphere-flat-business-ppt-background-image_260528.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 40px;
+  justify-content: center;
+  display: grid;
+  grid-template-rows: 1fr auto 1fr;
+  align-items: center;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.login-form h1 {
+  text-align: center;
+  font-size: 2.5em;
+  font-weight: 400;
+  color: rgb(102, 58, 58);
+}
+
+.login-form h2 {
+  font-size: 30px;
+  line-height: 40px;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #272346;
+  text-align: center;
+}
+
+.login-form .main {
+  position: relative;
+  display: flex;
+  margin: 30px 0;
+}
+
+.content {
+  flex-basis: 50%;
+  padding: 3em 3em;
+  background: #fff;
+  box-shadow: 2px 9px 49px -17px rgba(0, 0, 0, 0.1);
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 40px;
+}
+
+.form-img {
+  flex-basis: 50%;
+  background: #f4f9fd;
+  background-size: cover;
+  padding: 40px;
+  border-top-left-radius: 40px;
+  border-bottom-left-radius: 0px;
+  align-items: center;
+  display: grid;
+}
+
+.form-img img {
+  max-width: 100%;
+}
+
+.btn,
+input {
+  border-radius: 35px;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.btn:hover {
+  transition: 0.5s ease;
+}
+
+.btn-1 {
+  background-color: maroon;
+  border: none;
+  color: white;
+  padding: 15px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-right: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 40px;
+  transition: 0.5s;
+}
+
+.btn-1:hover {
+  transform: translateX(-2px);
+}
+
+.choices {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form form {
+  margin: 30px 0;
+}
+
+.login-form input {
+  outline: none;
+  margin-bottom: 15px;
+  font-stretch: 16px;
+  color: #999;
+  text-align: left;
+  padding: 14px 20px;
+  width: 100%;
+  display: inline-block;
+  box-sizing: border-box;
+  border: none;
+  background: #f7fafc;
+  border: 1px solid #e5e5e5;
+  transition: 0.3s ease;
+}
+
+.login-form input:focus {
+  background: transparent;
+  border: 1px solid #0568c1;
+}
+
+.login-form .btn {
+  font-size: 18px;
+  color: #fff;
+  width: 100%;
+  background: #0568c1;
+  border: none;
+  padding: 14px 15px;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.login-form .btn:hover {
+  background: #9f1c32;
+}
+
+@media (max-width: 736px) {
+  .login-form .main {
+    flex-direction: column-reverse;
+  }
+
+  .login-form form {
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+
+  .form-img {
+    border-radius: 0;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 40px;
+    order: 2;
+  }
+
+  .form-img img {
+    height: 100px;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .content {
+    order: 1;
+    border-radius: 0;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 40px;
+  }
+}
