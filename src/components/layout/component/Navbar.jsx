@@ -3,17 +3,13 @@ import "../layout.css";
 import SideBar from "./SideBar";
 import { Link } from "react-router-dom";
 import * as GiIcons from "react-icons/gi";
-import { RiArrowDropDownLine } from "react-icons/ri";
-import Dropdown from "./Dropdown";
+// import { RiArrowDropDownLine } from "react-icons/ri";
 import Dyplogo from '../../../assets/dypatil.png'
+import {MenuItem} from './MenuItem'
+
 function Navbar(props) {
   const [sidebar, setSidebar] = useState(true);
-  const [Drop_down, setDrop_down] = useState(false);
-
-  const showDrop_down = () => {
-    setDrop_down(!Drop_down);
-  };
-
+  
   const showSidebar = () => {
     setSidebar(!sidebar);
   };
@@ -31,23 +27,28 @@ function Navbar(props) {
               </div>
             </div>
           </div>
-          <div className="nav-right" onClick={showDrop_down}>
-            {/* <div>
-            <img src="pp.jpg" alt="" />
-          </div> */}
-            <div>
-              <span className="name">ADMIN</span>
-            </div>
-            <div>
-              <RiArrowDropDownLine size="30" />
-            </div>
-          </div>
+         
+          <ul className="nav-right">
+            
+            <li className="menu" >
+              {MenuItem.map((val,key) => {
+                return (
+                  <div>
+                    <a href="/login" key={key} id="menu" >
+                      {/* <div id="icon" >{val.icon}</div> */}
+                      <div id="title" >{val.title}</div>
+                    </a>
+                  </div>
+                );
 
-          <div className={Drop_down ? "dd-menu active" : "dd-menu"}>
-            <div className="App">
-              <Dropdown />
-            </div>
-          </div>
+              } )}
+            </li>
+            <li id="name" >
+              <img src="pp.jpg" alt="" />
+              <span > Admin </span>
+            </li>
+          </ul>
+         
         </nav>
 
         <nav className="navbar1">
