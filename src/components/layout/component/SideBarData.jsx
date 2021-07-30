@@ -1,6 +1,7 @@
 import React from "react";
-import { FaInfoCircle } from "react-icons/fa";
+import { FaInfoCircle, FaWpforms } from "react-icons/fa";
 import { AiFillHome } from "react-icons/ai";
+
 export const SideBarData = [
   {
     title: "Home",
@@ -13,8 +14,8 @@ export const SideBarData = [
     link: "/login",
   },
   {
-    title: "View Details",
-    icon: <FaInfoCircle size={22} />,
+    title: "Exam Form",
+    icon: <FaWpforms size={22} />,
     link: "/form",
   },
 ];

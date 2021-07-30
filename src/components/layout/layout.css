@@ -16,7 +16,6 @@ display: flex-column;
   width: 200px;
   height: 100%;
   left: 0px;
-  top: 0px;
   font-weight: bold;
   background: #a21729;
   box-shadow: inset 90px 0px 123px 1px rgba(0, 0, 0, 0.25);
@@ -88,11 +87,13 @@ display: flex-column;
   align-items: center;
   padding-right: 0px;
   padding-left: 0px;
+  
   border-bottom: #500202 1px solid;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+ 
 }
 .navbar1 {
   width: 100%;
@@ -102,18 +103,9 @@ display: flex-column;
   display: flex;
   align-items: center;
   padding-top: 3px;
- 
+  
 }
 
-.menu-bars {
-  margin-top: 0rem;
-  margin-left: 15rem;
-  font-size: 2rem;
-  background-color: none;
-  display: flex;
-  transition: 430ms;
-  cursor: pointer;
-}
 
 .nav-menu {
   width: 200px;
@@ -135,17 +127,6 @@ display: flex-column;
   height: 100px;
 }
 
-.menu-button {
-  margin-top: 0rem;
-  font-size: 2rem;
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  padding-top: 0px;
-  left: 100;
-  padding-left: 13px;
-  list-style: none;
-}
 
 .nav-right img {
   height: 30px;
@@ -153,88 +134,38 @@ display: flex-column;
 }
 
 .nav-right {
-  cursor: pointer;
-  margin-right: 30px;
-  display: flex;
-  align-items: center;
-  display: flex;
-  row-gap: 8px;
-  justify-content: space-between;
-  width: 9.5%;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-.nav-right:hover {
-  background-color: rgb(214, 210, 210);
-  height: 100%;
-}
-
-/* Dropdown  */
-
-.Dropdown {
-  position: relative;
-  width: 132px;
-  height: auto;
-  left: 1155px;
-  top: 10px;
-  background: #d3cdcd;
-  box-shadow: inset 90px 0px 123px 1px rgba(0, 0, 0, 0.25);
-  color: #ffffff;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-.Drp-list {
-  width: 91%;
-  padding: 0;
-  height: auto;
-}
-
-.Drp-list .r {
-  width: 110%;
-  height: 50px;
-  list-style-type: none;
-  margin: 0em;
+  list-style: none;
   display: flex;
   flex-direction: row;
-  justify-content: center;
   align-items: center;
-  font-family: "Times New Roman", Times, serif;
-
-  transition: 850;
+  margin-top: 8px;
+  margin-right: 10px;
+  -webkit-user-select: none;  
+  -moz-user-select: none;    
+  -ms-user-select: none;      
+  user-select: none;
 }
 
-.Drp-list .r:hover {
-  cursor: pointer;
-  background-color: rgb(104, 95, 236);
-  text-decoration: underline;
+#name{
+  margin-top: 8px ;
+ padding: 10px 20px ;
 }
 
-.r #icon {
-  flex: 30%;
-  display: grid;
-  place-items: center;
-}
-
-.r #title {
-  flex: 70%;
-}
-
-.dd-menu {
-  width: 200px;
-  height: 100vh;
+#menu{
   display: flex;
-  justify-content: center;
-  position: fixed;
-  top: 50;
-  top: -100%;
+  text-decoration: none;
+  color: grey;
+  margin-top: 6px ;
+  margin-right: 1px;
+  padding: 10px 15px ;
+  
+}
+.menu{
+  display: flex;
 }
 
-.dd-menu.active {
-  top: 50px;
+#menu:hover{
+  color: black;
 }
+
+
