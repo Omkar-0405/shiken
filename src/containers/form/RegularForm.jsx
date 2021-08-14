@@ -43,9 +43,9 @@ export default function RegularForm() {
 
         <Form onSubmit={handleSubmit}>
           <fieldset className="sec">
-            <legend className="w-auto p-1">
+            {/* <legend className="w-auto p-1">
               <b>Students Details</b>
-            </legend>
+            </legend> */}
             <br />
 
             <Row>
