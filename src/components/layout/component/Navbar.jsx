@@ -16,7 +16,7 @@ function Navbar(props) {
 
   return (
     <div className="layout">
-      <div>
+      <div className="sticky" >
         <nav className="Navbar">
           <div className="nav-left">
             <div className="menu-button">
@@ -51,7 +51,7 @@ function Navbar(props) {
 
         </nav>
 
-        <div className="sticky">
+        
           <nav className="navbar1">
             <div className="hamburger">
 
@@ -65,8 +65,11 @@ function Navbar(props) {
               <SideBar />
 
           </nav>
-        </div>
+        
       </div>
+
+
+
       <div className={ sidebar?"appBody":"appBody1"}>
               {props.children}
             </div>
