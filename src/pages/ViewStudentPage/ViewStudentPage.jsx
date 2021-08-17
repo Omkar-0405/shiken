@@ -1,6 +1,6 @@
 import React from 'react'
 import { EditButton, VerificationButton } from '../../components/button/Button'
-import Layout from '../../components/layout/Layout'
+import Layout from '../../components/layout/component/Navbar'
 import { ViewForm } from '../../containers/viewForm/ViewForm'
 /**
 * @author

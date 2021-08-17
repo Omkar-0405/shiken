@@ -67,9 +67,9 @@ function Navbar(props) {
           </nav>
         </div>
       </div>
-      <div className="appBody">
-        {props.children}
-      </div>
+      <div className={ sidebar?"appBody":"appBody1"}>
+              {props.children}
+            </div>
 
     </div>
   );

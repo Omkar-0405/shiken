@@ -1,16 +1,29 @@
 import React from "react";
 import "./filters.css";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col,Form } from "react-bootstrap";
 import Dropdown from "react-bootstrap/Dropdown";
 
 function Filter() {
   return (
     <div className="filter">
-      <Container>
+      
+  <Container flex fluid className="mg-3">
+  <hr/>
+  <Form>
         <Row>
-          <Col>
-            {/* <h4>Department</h4> */}
-            <Dropdown>
+        
+          <Col lg="4">
+ <Form.Group >
+ <Form.Label>Department</Form.Label>
+  <Form.Control as="select" >
+    <option>Department</option>
+    <option value="1">One</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+  </Form.Control>
+  </Form.Group>
+          
+            {/* <Dropdown>
               <Dropdown.Toggle variant="danger" id="dropdown-basic">
               Department
               </Dropdown.Toggle>
@@ -20,11 +33,19 @@ function Filter() {
                 <Dropdown.Item href="#/action-2">IT</Dropdown.Item>
                 <Dropdown.Item href="#/action-3">ENTC</Dropdown.Item>
               </Dropdown.Menu>
-            </Dropdown>
+            </Dropdown> */}
           </Col>
-          <Col>
-            {/* <h4>Sem</h4> */}
-            <Dropdown>
+          <Col lg="4">
+            <Form.Group >
+            <Form.Label>Semester</Form.Label>
+              <Form.Control as="select" >
+              <option>Semester</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+                </Form.Control>
+                </Form.Group>
+            {/* <Dropdown>
               <Dropdown.Toggle variant="danger" id="dropdown-basic">
                 Sem
               </Dropdown.Toggle>
@@ -34,24 +55,14 @@ function Filter() {
                 <Dropdown.Item href="#/action-2">2</Dropdown.Item>
                 <Dropdown.Item href="#/action-3">3</Dropdown.Item>
               </Dropdown.Menu>
-            </Dropdown>
+            </Dropdown> */}
           </Col>
           <Col>
-            {/* <h4>text1</h4> */}
-            <Dropdown>
-              <Dropdown.Toggle variant="danger" id="dropdown-basic">
-              Other
-              </Dropdown.Toggle>
-
-              <Dropdown.Menu>
-                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
+            okk?
           </Col>
         </Row>
-      </Container>
+        </Form>
+        </Container>
     </div>
   );
 }

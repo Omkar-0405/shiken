@@ -8,4 +8,10 @@
 
 .cbtn{
     outline: brown;
+    margin:10px;
+    /* padding:7px 40px; */
+    padding: auto;
+    letter-spacing: 1px;
+    font-weight: bold;
+    
 }
