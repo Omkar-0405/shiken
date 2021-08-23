@@ -214,7 +214,7 @@ export default function Veriform() {
                 </select>
               </Col>
             </Row>
-            <Button className="m-3" variant="primary" type="submit">
+            <Button className="m-3" variant="danger" type="submit">
               Submit
             </Button>
           </fieldset>

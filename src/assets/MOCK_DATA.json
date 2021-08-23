@@ -4,49 +4,49 @@
     "first_name": "Maddie",
     "last_name": "Vian",
     "roll_no": "4507936969",
-    "status": "true"
+    "status": "Verified"
   },
   {
     "sr_no": 2,
     "first_name": "Zorana",
     "last_name": "Foxen",
     "roll_no": "2220301354",
-    "status": true
+    "status": "Verified"
   },
   {
     "sr_no": 3,
     "first_name": "Peria",
     "last_name": "Maria",
     "roll_no": "0927433028",
-    "status": true
+    "status": "Verified"
   },
   {
     "sr_no": 4,
     "first_name": "Shepherd",
     "last_name": "Allsep",
     "roll_no": "2918388084",
-    "status": false
+    "status": "false"
   },
   {
     "sr_no": 5,
     "first_name": "Luke",
     "last_name": "Videneev",
     "roll_no": "6432279275",
-    "status": true
+    "status": "true"
   },
   {
     "sr_no": 6,
     "first_name": "Pernell",
     "last_name": "Codd",
     "roll_no": "6307496622",
-    "status": false
+    "status": "false"
   },
   {
     "sr_no": 7,
     "first_name": "Chrysler",
     "last_name": "Skally",
     "roll_no": "4993638612",
-    "status": false
+    "status": "false"
   },
   {
     "sr_no": 8,

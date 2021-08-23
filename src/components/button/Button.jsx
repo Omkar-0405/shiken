@@ -47,8 +47,8 @@ export const VerificationButton = (props) => {
 export const CustumButton = (props) => {
     return (
         <div>
-            <Button variant="props.variant" className="cbtn float-right" onClick={props.onClick} >
-            {props.icon}{props.name}
+            <Button variant={props.variant} className="cbtn" onClick={props.onClick} >
+            {props.icon} {props.name}
             </Button>
 
         </div>
