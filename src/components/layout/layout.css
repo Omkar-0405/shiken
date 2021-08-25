@@ -2,23 +2,35 @@
 
 .layout {
 display: flex-column; 
+
 /* update required for responsive */
 }
 .appBody{
   flex-grow: 1;
-  margin-left: 13rem;
-  padding: 0.5rem;
+  margin-left: 230px;
+  /* padding: 0.5rem; */
+  
+}
+
+.appBody1{
+  flex-grow: 1;
+  margin-left: 0rem;
+  padding: 0rem;
+ 
 }
 /* sidebar */
-
+.layout .sticky {
+  position: sticky;
+  top: 0px;
+  z-index: 40000000000000000000000000000;
+}
 .SideBar {
-  position: absolute;
-  width: 200px;
+  /* position: absolute; */
+  width: 230px;
   height: 100%;
   left: 0px;
-  font-weight: bold;
-  background: #a21729;
-  box-shadow: inset 90px 0px 123px 1px rgba(0, 0, 0, 0.25);
+  background: #9b0909;
+  
 }
 
 .SideBarList {
@@ -32,7 +44,6 @@ display: flex-column;
 }
 
 .SideBarList .main {
-  letter-spacing: 0.1em;
   width: 110%;
   height: 50px;
 
@@ -47,24 +58,33 @@ display: flex-column;
   width: 110%;
   height: 50px;
   list-style-type: none;
-  color: white !important;
+  color: white ;
   margin: 0em;
   display: flex;
   flex-direction: row;
   justify-content: start;
   align-items: center;
-  font-family: "Times New Roman", Times, serif;
+  font-family: 'Roboto Slab', serif;
   transition: 850;
   text-decoration: none;
 }
 
 .SideBarList .row:hover {
   cursor: pointer;
-  background-color: #500202;
+  /* background-color: #500202; */
+  background-color: #770202;
+ /* background-color: #ffffff;
+  color: #810303;*/
 }
 
 .SideBarList #active {
-  background-color: #500202;
+  /* background-color: #500202; */
+  background-color: #ffffff;
+  color: #9b0909;
+  border-top-left-radius: 1.5rem;
+  border-bottom-left-radius: 1.5rem;
+  margin-left:8px;
+  width: 222px;
 }
 
 .row #icon {
@@ -81,38 +101,41 @@ display: flex-column;
 
 .Navbar {
   width: 100%;
-  height: 70px;
+/*  height: 70px;*/
+height: 90px;
   display: flex;
   justify-content: space-between;
+  background-color: #ffffff;
   align-items: center;
   padding-right: 0px;
   padding-left: 0px;
-  
-  border-bottom: #500202 1px solid;
+  /* border-bottom: #500202 1px solid; */
+  border-bottom: #770202 1px solid;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
- 
+  
 }
 .navbar1 {
   width: 100%;
   height: 30px;
-  background-color: #500202;
+  background-color: #770202;
   padding: 0 15px;
   display: flex;
   align-items: center;
   padding-top: 3px;
+
   
 }
 
 
 .nav-menu {
-  width: 200px;
+  width: 230px;
   height: 100vh;
   display: flex;
   justify-content: center;
-  position: fixed;
+  position:absolute;
   top: 50;
   left: -100%;
   transition: 450ms;

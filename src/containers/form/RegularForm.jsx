@@ -43,9 +43,9 @@ export default function RegularForm() {
 
         <Form onSubmit={handleSubmit}>
           <fieldset className="sec">
-            <legend className="w-auto p-1">
+            {/* <legend className="w-auto p-1">
               <b>Students Details</b>
-            </legend>
+            </legend> */}
             <br />
 
             <Row>
@@ -206,7 +206,7 @@ export default function RegularForm() {
                 </select>
               </Col>
             </Row>
-            <Button className="m-3" variant="primary" type="submit">
+            <Button className="m-3" variant="danger" type="submit">
               Submit
             </Button>
           </fieldset>

@@ -7,12 +7,22 @@
   height: 100%;
   padding: 2%;
 }
-
+.fbtn{
+  margin:10px;
+  padding:7px 40px;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
 .mbody {
   padding: 2%;
   background-color: #fff;
   border-radius: 1rem;
-  margin-top: 3%;
+  
+}
+.fordiv{
+  border-left-style: double ; 
+  border-color:#f59096 ;
+  border-width: 3px ;
 }
 .sec {
   border-style: solid;

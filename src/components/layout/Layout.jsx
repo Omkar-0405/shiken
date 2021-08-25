@@ -7,12 +7,12 @@ import Navbar from "./component/Navbar";
 
 function Layout(props) {
   return (
-    <div >
+  <div >
         <Navbar />
           <div className="appBody">
           {props.children}
           </div>
-         
+
     </div>
   );
 }
