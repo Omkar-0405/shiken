@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { createContext } from 'react'
 
-/**
-* @author
-* @function GlobalState
-**/
-const UserContext = createContext(undefined);
+export const Store = createContext(undefined);
+
+export const StoreProvider = (props) => {
+    return <Store.Provider value='auth'> {props.children} </Store.Provider>;
+  }
 
 const Auth = (props) => {
     const [state, setAuth] = useState([  {
@@ -27,6 +27,3 @@ const Auth = (props) => {
         <div>GlobalState</div>
     )
 }
-
-
-export default GlobalState

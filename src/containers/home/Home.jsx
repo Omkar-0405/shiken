@@ -1,8 +1,8 @@
 import React from 'react'
 import Layout from '../../components/layout/component/Navbar'
 import Alerts from '../../components/alert';
-import { CustumButton } from '../../components/button/Button';
-import Tablee from '../../components/verifiedTable';
+// import { CustumButton } from '../../components/button/Button';
+// import Tablee from '../../components/verifiedTable';
 import "./Home.css";
 
 /**

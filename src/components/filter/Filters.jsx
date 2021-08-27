@@ -17,9 +17,9 @@ function Filter() {
                 <Form.Label>Department</Form.Label>
                 <Form.Control as="select" >
                   <option>Department</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                  <option value="1">Computer</option>
+                  <option value="2">Electronics</option>
+                  <option value="3">E&Tc</option>
                 </Form.Control>
               </Form.Group>
 
@@ -30,14 +30,15 @@ function Filter() {
                 <Form.Label>Semester</Form.Label>
                 <Form.Control as="select" >
                   <option>Semester</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                  <option value="1">I</option>
+                  <option value="2">II</option>
+                  <option value="3">III</option>
+                  <option value="3">IV</option>
                 </Form.Control>
               </Form.Group>
             </Col>
             <Col lg="4">
-      <CustumButton variant="outline-danger" name="Load" icon={<FiSearch/>}/>
+      <CustumButton variant="outline-danger" name="Load" icon={<FiSearch/>} style={{}} />
             </Col>
           </Row>
         </Form>
