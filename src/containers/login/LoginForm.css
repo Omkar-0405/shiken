@@ -1,14 +1,10 @@
-* {
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
+} */
 .login-form {
+  overflow-y: hidden !important;
   position: relative;
   min-height: 100vh;
   z-index: 0;
@@ -88,7 +84,7 @@ input {
 }
 
 .btn-1 {
-  background-color: maroon;
+  background-color: rgba(128, 0, 0, 0.856);
   border: none;
   color: white;
   padding: 15px 30px;
@@ -104,7 +100,9 @@ input {
 }
 
 .btn-1:hover {
-  transform: translateX(-2px);
+  /* transform: translateX(-2px); */
+  /* transform: scale(1.01); */
+  background-color: maroon;
 }
 
 .choices {
@@ -135,14 +133,14 @@ input {
 
 .login-form input:focus {
   background: transparent;
-  border: 1px solid #0568c1;
+  border: 1px solid #d82323;
 }
 
 .login-form .btn {
   font-size: 18px;
   color: #fff;
   width: 100%;
-  background: #0568c1;
+  background: #bb0d0d;
   border: none;
   padding: 14px 15px;
   font-weight: 600;

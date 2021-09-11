@@ -1,12 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../layout.css";
+import "./layout.css";
 import { SideBarData } from "./SideBarData";
 function SideBar() {
   return (
     <div className="SideBar">
       <ul className="SideBarList">
-        {/* <div className="main"> Hall Ticket </div> */}
+        {/* 
+        map routes as per context roles ! check auth 
+        */}
         {SideBarData.map((val, key) => {
           return (
             <div>

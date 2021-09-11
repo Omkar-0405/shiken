@@ -1,6 +1,6 @@
 import React from 'react'
 import Filter from '../../components/filter/Filters'
-import Layout from '../../components/layout/component/Navbar'
+import Layout from '../../components/layout/Navbar'
 import { BasicTable } from '../../components/table/Table'
 import TableHeading from '../../components/table/TableHeading'
 

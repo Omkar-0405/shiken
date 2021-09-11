@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import "../layout.css";
+import "./layout.css";
 import SideBar from "./SideBar";
 import { Link } from "react-router-dom";
 import * as GiIcons from "react-icons/gi";
 // import { RiArrowDropDownLine } from "react-icons/ri";
-import Dyplogo from '../../../assets/dypatil.png'
+import Dyplogo from '../../assets/dypatil.png'
 import { MenuItem } from './MenuItem'
 
 function Navbar(props) {
@@ -45,34 +45,25 @@ function Navbar(props) {
             </li>
             <li id="name" >
               <img src="pp.jpg" alt="" />
-              <span > Admin </span>
+              <span >Name </span>
             </li>
           </ul>
-
         </nav>
 
-        
-          <nav className="navbar1">
-            <div className="hamburger">
+        <nav className="navbar1">
+          <div className="hamburger">
+            <GiIcons.GiHamburgerMenu color="white" onClick={showSidebar} />
+          </div>
+        </nav>
 
-              <GiIcons.GiHamburgerMenu color="white" onClick={showSidebar} />
-
-            </div>
-          </nav>
-
-          <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
- 
-              <SideBar />
-
-          </nav>
-        
+        <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
+          <SideBar />
+        </nav>
       </div>
 
-
-
-      <div className={ sidebar?"appBody":"appBody1"}>
-              {props.children}
-            </div>
+      <div className={sidebar ? "appBody" : "appBody1"}>
+        {props.children}
+      </div>
 
     </div>
   );

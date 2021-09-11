@@ -19,7 +19,7 @@ export const ViewForm = (props) => {
                 {/* left section */}
                 <Row>
                   <Form.Label column lg={4} sm={12}>
-                    Student Name :
+                    Student Name:
                   </Form.Label>
                   <Col lg={12} sm={12}>
                     <Form.Control type="text" placeholder="Student Name" />
