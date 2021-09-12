@@ -7,8 +7,8 @@ const StudentForm = () => {
   const submitHandler = (e) => {
     e.preventDefault();
 
-const auth = {rollNo , password , role:"student"}
-    console.log(auth);
+const user = {rollNo , password , role:"student"}
+    console.log(user);
   };
 
   return (
