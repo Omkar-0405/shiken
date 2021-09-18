@@ -9,7 +9,8 @@ const user = [{
 {
     rollno: "100",
     password: "abc",
-    role: "student"
+    role: "student",
+    
 }
 
 ]

@@ -5,17 +5,13 @@ import { GoChecklist } from "react-icons/go";
 import {IoIosOpen} from 'react-icons/io';
 
 //public links , student route links , faculty route links are exported separtely --- map them as per role in navbar.jsx
-export const SideBarData = [
+export const Student = [
   {
     title: "Home",
     icon: <AiFillHome size={25} />,
-    link: "/",
+    link: "/stud_home",
   },
-  // {
-  //   title: "Login",
-  //   icon: <FaInfoCircle size={22} />,
-  //   link: "/login",
-  // },
+  
   {
     title: "Exam Form",
     icon: <FaWpforms size={22} />,
@@ -37,7 +33,7 @@ export const SideBarData = [
 ];
 
 
-export const Student = [
+export const SideBarData = [
   {
     title: "Home",
     icon: <AiFillHome size={25} />,

@@ -8,7 +8,7 @@ function Layout(props) {
   <div >
         <Navbar />
           <div className="appBody">
-          {props.children}
+            {props.children}
           </div>
 
     </div>

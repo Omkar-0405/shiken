@@ -1,9 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import FacultyForm from "./FacultyForm";
 import "./LoginForm.css";
 import StudentForm from "./StudentForm";
 
 const LoginForm = () => {
+  const his = useHistory()
+   useEffect(()=>{
+     if(localStorage.getItem("student_token")){
+        return his.push("/stud_home")
+     }
+     else if(localStorage.getItem("faculty_token")){
+       return his.push("/fac_home")
+     }
+   },[]) 
+
+
   const [toggle, settoggle] = useState(true);
 
   const toggleHandlerFaculty = () => {

@@ -3,9 +3,10 @@ import { GoSignOut } from "react-icons/go";
 
 export const MenuItem = [
     {
-      title: "SignIn",
+      title: "SignOut",
       icon: <GoSignOut color="grey" size={20} />,
       link: "/login",
+      
     }
     
 
