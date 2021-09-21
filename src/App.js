@@ -21,7 +21,7 @@ function App() {
            {/* public route */}
            <Route path="/fac_home" ><Protected><FacHome/></Protected></Route>
           <Route path="/stud_home" ><Protected><StudHome/></Protected></Route>
-          <Route exact path="/login" ><LoginForm/></Route>
+          <Route exact path="/" ><LoginForm/></Route>
           <Route path="/form"  > <Protected><ExamForm/></Protected></Route>
           <Route path="/details"   > <Protected><ViewStudentPage/></Protected></Route>
           <Route path="/form-status"   > <Protected><ViewAllStudents/></Protected></Route>

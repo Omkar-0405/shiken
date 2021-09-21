@@ -15,7 +15,7 @@ const StudentForm = () => {
     const auth = {
       rollno, password, usertype:"student"
     }
-    axios.post(' http://localhost:4000/api/login ', auth )
+    axios.post(' http://localhost:2000/api/login ', auth )
         .then((res)=>{
           
           localStorage.setItem( "student_token", res.data.token)

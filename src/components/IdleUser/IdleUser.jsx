@@ -10,7 +10,7 @@ const IdleUser = (props) => {
     const onIdle = () => {
         localStorage.clear()
         alert("Session TimeOut ")
-        return his.push("/login")
+        return his.push("/")
     }
     return (
         <div>

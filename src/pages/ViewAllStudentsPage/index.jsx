@@ -12,9 +12,6 @@ import TableHeading from '../../components/table/TableHeading'
 
 const ViewAllStudents = (props) => {
 
-  
-
-
   return(
     <div>
       <Layout>

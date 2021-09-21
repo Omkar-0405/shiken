@@ -42,7 +42,7 @@ function Navbar(props) {
                       onClick= {()=>{
                         localStorage.clear();
                         return(
-                          his.push('/login')
+                          his.push('/')
                         )
                       }} >
                       {MenuItem[0].title}</div>
