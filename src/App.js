@@ -8,6 +8,8 @@ import ViewAllStudents from "./pages/ViewAllStudentsPage";
 import StudHome from "./containers/home/StudentHome/Home";
 import FacHome from "./containers/home/FacultyHome/FacHome";
 import Protected from "./routers/Protected";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 function App() {

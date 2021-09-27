@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { toast, ToastContainer } from 'react-toastify';
+import { ToastifyDanger } from "../../components/Toast/Toastify";
 
 const StudentForm = () => {
   
@@ -24,14 +26,15 @@ const StudentForm = () => {
           return his.push("/stud_home")
         })
         .catch((err) =>{
-          console.log(err)
-          alert("Invalid LoginId or Password")
+          
+          ToastifyDanger(  )
         })
   };
 
   
 
   return (
+    <>
     <form action="" onSubmit={submitHandler}>
       <input
         type="text"
@@ -52,6 +55,8 @@ const StudentForm = () => {
       <button className="btn" type="submit" >Login</button> 
       
     </form>
+    <ToastContainer  />
+    </>
   );
 };
 

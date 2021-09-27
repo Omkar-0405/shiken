@@ -4,6 +4,8 @@ import MOCK_DATA from "../../assets/MOCK_DATA.json";
 import { VerificationButton } from "../button/Button";
 import { COLUMNS } from "./columns/Columns";
 import "./table.css";
+
+
 export const BasicTable = () => {
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => MOCK_DATA, []);

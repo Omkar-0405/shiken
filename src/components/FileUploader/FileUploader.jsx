@@ -1,5 +1,6 @@
+import axios from "axios";
 import React, { useRef, useState } from "react";
-import * as Fa  from "react-icons/fa";
+// import * as Fa  from "react-icons/fa";
 // import useFileDownloader from "hooks/useFileDownloader";
 import { ProgressBar } from "react-bootstrap";
 const files = [
@@ -12,32 +13,25 @@ const files = [
 
 const FileUploader = () => {
 
-    const [uploadPercentage, setUploadPercentage] = useState(0);
-    const cancelFileUpload = useRef(null);
+    
+   let data = new FormData();
 
-    const uploadFile = ({ target: { files } }) => {
-        let data = new FormData();
+    const locateFile = ({ target: { files } }) => {
+       
         data.append("file", files[0]);
-
-        const options = {
-            onUploadProgress: progressEvent => {
-                const { loaded, total } = progressEvent;
-
-                let percent = Math.floor((loaded * 100) / total);
-
-                if (percent < 100) {
-                    setUploadPercentage(percent);
-                }
-            },
-            
-        };
  
     };
 
-    const cancelUpload = () => {
-        if (cancelFileUpload.current)
-            cancelFileUpload.current("User has canceled the file upload.");
-    };
+    const uploadFile = async () => {
+        
+      await axios("http://localhost:2000/api/uploadstudentdata", data.get("file"))
+        .then((res)=>{
+            console.log(res)
+        }, (err) => console.log(err))
+
+    }
+
+    
 
   return (
     <>
@@ -47,31 +41,19 @@ const FileUploader = () => {
 
                     
                     <p>
+                      <form action="" onSubmit={uploadFile} method="POST">
                         <input 
                             type="file"
                             className="form-control-file p-5 border"
-                            onChange={uploadFile}
+                            onChange={locateFile}
                         />
+
+                        <button type="submit">
+                            Upload
+                        </button>
+                       </form>   
                     </p>
-                    {uploadPercentage > 0 && (
-                        <div className="row mt-3">
-                            <div className="col pt-1">
-                                <ProgressBar
-                                    now={uploadPercentage}
-                                    striped={true}
-                                    label={`${uploadPercentage}%`}
-                                />
-                            </div>
-                            <div className="col-auto">
-                                <span
-                                    className="text-primary cursor-pointer"
-                                    onClick={() => cancelUpload()}
-                                >
-                                    Cancel
-                                </span>
-                            </div>
-                        </div>
-                    )}
+                    
                    
                 </div>
             </div>

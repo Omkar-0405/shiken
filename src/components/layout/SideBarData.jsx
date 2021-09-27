@@ -17,11 +17,7 @@ export const Student = [
     icon: <FaWpforms size={22} />,
     link: "/form",
   },
-  {
-    title: "Student List",
-    icon: <GoChecklist size={22} />,
-    link: "/form-status",
-  },
+  
 
   {
     title: "Details",
@@ -39,20 +35,13 @@ export const SideBarData = [
     icon: <AiFillHome size={25} />,
     link: "/student/",
   },
-  // {
-  //   title: "Login",
-  //   icon: <FaInfoCircle size={22} />,
-  //   link: "/login",
-  // },
-  {
-    title: "Exam Form",
-    icon: <FaWpforms size={22} />,
-    link: "/student/form",
-  },
+  
   {
     title: "Student List",
     icon: <GoChecklist size={22} />,
-    link: "student/form-status",
+    link: "/form-status",
   },
+
+  
 
 ];
