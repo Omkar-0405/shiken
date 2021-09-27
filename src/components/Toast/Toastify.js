@@ -3,13 +3,13 @@ import { toast , ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const ToastifySuccess = ( msg ) => {
-            console.log(msg)
+            
             toast.success( <div>{msg}</div>, {
-            position: "bottom-right",
-            autoClose: 5000,
-            hideProgressBar: false,
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: true,
             closeOnClick: true,
-            pauseOnHover: true,
+            pauseOnHover: false,
             draggable: true,
             progress: undefined,
             });
@@ -20,7 +20,7 @@ export const ToastifySuccess = ( msg ) => {
 
 export const ToastifyDanger = (err ) => {
         toast.warn( <div>{err}</div> , {
-            position: "bottom-right",
+            position: "top-center",
             autoClose: 5000,
             hideProgressBar: false,
             closeOnClick: true,

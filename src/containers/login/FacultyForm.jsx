@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import { ToastifyDanger, ToastifySuccess } from "../../components/Toast/Toastify";
 
 const FacultyForm = () => {
   const [sdrn, setNumber] = useState("");
@@ -20,15 +22,17 @@ const FacultyForm = () => {
         .then((res)=>{
           localStorage.setItem( "faculty_token",res.data.token)
           localStorage.setItem( "Role", res.data.faculty.Role)
-          return his.push("/fac_home")
+          ToastifySuccess ( "Login Successfull")
+          return setTimeout(() => {
+            his.push("/fac_home") 
+          }, 1500);
         })
         .catch((err) =>{
-          console.log(err)
-          alert("Invalid LoginId or Password")
+          ToastifyDanger( "Authentication Fail" )
         })
 };
 
-  return (
+  return (<>
     <form action="" onSubmit={submitHandler}>
       <input
         type="text"
@@ -49,6 +53,8 @@ const FacultyForm = () => {
         Login
       </button>
     </form>
+    <ToastContainer/>
+    </>
   );
 };
 

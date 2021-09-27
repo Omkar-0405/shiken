@@ -22,7 +22,7 @@ display: flex-column;
 .layout .sticky {
   position: sticky;
   top: 0px;
-  z-index: 40000000000000000000000000000;
+  z-index: 2;
 }
 .SideBar {
   /* position: absolute; */

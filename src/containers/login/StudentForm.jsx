@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { toast, ToastContainer } from 'react-toastify';
-import { ToastifyDanger } from "../../components/Toast/Toastify";
+import {  ToastContainer } from 'react-toastify';
+import { ToastifyDanger, ToastifySuccess } from "../../components/Toast/Toastify";
 
 const StudentForm = () => {
   
@@ -22,12 +22,15 @@ const StudentForm = () => {
           
           localStorage.setItem( "student_token", res.data.token)
           localStorage.setItem( "Role", res.data.student.Role)
-          
-          return his.push("/stud_home")
+
+          ToastifySuccess ( "Login Successfull")
+          return setTimeout(() => {
+            his.push("/stud_home") 
+          }, 1500);
         })
         .catch((err) =>{
           
-          ToastifyDanger(  )
+          ToastifyDanger( "Authentication Fail" )
         })
   };
 
