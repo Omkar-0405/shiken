@@ -1,35 +1,49 @@
 import axios from "axios";
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 // import * as Fa  from "react-icons/fa";
 // import useFileDownloader from "hooks/useFileDownloader";
 import { ProgressBar } from "react-bootstrap";
-const files = [
-  {
-    name: "Upload CSV",
-    
-    
-  }
-];
+import { toast, ToastContainer } from 'react-toastify';
+import { ToastifyDanger, ToastifySuccess } from "../Toast/Toastify";
+
+
+
 
 const FileUploader = () => {
 
-    
+    const val =  useRef()
+
    let data = new FormData();
 
-    const locateFile = ({ target: { files } }) => {
-       
+    const locateFile = ({target : {files} }) => {
+       console.log("e value", files )
         data.append("file", files[0]);
- 
-    };
+        console.log(data)
 
-    const uploadFile = async () => {
-        
-      await axios("http://localhost:2000/api/uploadstudentdata", data.get("file"))
+        axios.post("http://localhost:2000/api/uploadstudentdata", data, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
         .then((res)=>{
-            console.log(res)
-        }, (err) => console.log(err))
+            console.log(res.data.message)
+            ToastifySuccess(res.data.message)
+            
+        }, (err) =>  {
+           console.log(err) 
+           ToastifyDanger(err.message)
+           
+          }
+        )
+        setTimeout(() => {
+          val.current.value=null  
+        }, 3000);
+         
+    };
+    
+   
 
-    }
+    
 
     
 
@@ -41,21 +55,20 @@ const FileUploader = () => {
 
                     
                     <p>
-                      <form action="" onSubmit={uploadFile} method="POST">
+                      
                         <input 
                             type="file"
                             className="form-control-file p-5 border"
                             onChange={locateFile}
+                            ref={val}
                         />
-
-                        <button type="submit">
-                            Upload
-                        </button>
-                       </form>   
+                         
                     </p>
                     
                    
                 </div>
+                <ToastContainer/>
+              
             </div>
       
     </>
