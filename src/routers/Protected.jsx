@@ -5,7 +5,7 @@ const Protected = (props) => {
 
     const getLocalToken = ( ) => {
         let token = localStorage.getItem('Role')
-        
+// check role and make admin routes protected
         if(token){
            return token
         }

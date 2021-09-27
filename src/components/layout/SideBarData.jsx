@@ -1,8 +1,9 @@
 import React from "react";
 import { FaInfoCircle, FaWpforms } from "react-icons/fa";
-import { AiFillHome } from "react-icons/ai";
+import { AiFillHome ,AiOutlineFileDone ,AiFillFileAdd} from "react-icons/ai";
 import { GoChecklist } from "react-icons/go";
 import {IoIosOpen} from 'react-icons/io';
+import {GrDocumentCsv} from 'react-icons/gr';
 
 //public links , student route links , faculty route links are exported separtely --- map them as per role in navbar.jsx
 export const Student = [
@@ -33,15 +34,24 @@ export const SideBarData = [
   {
     title: "Home",
     icon: <AiFillHome size={25} />,
-    link: "/student/",
+    link: "/fac_home",
   },
   
   {
     title: "Student List",
-    icon: <GoChecklist size={22} />,
+    icon: <GoChecklist size={25} />,
     link: "/form-status",
   },
 
-  
+  {
+    title: "Generate Hall Ticket",
+    icon: <AiOutlineFileDone size={25}/>,
+    link: "/hall-ticket",
+  },
+  {
+    title: "Upload File",
+    icon: <AiFillFileAdd size={25}/>,
+    link: "/upload-csv",
+  },
 
 ];

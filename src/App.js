@@ -9,7 +9,8 @@ import StudHome from "./containers/home/StudentHome/Home";
 import FacHome from "./containers/home/FacultyHome/FacHome";
 import Protected from "./routers/Protected";
 import 'react-toastify/dist/ReactToastify.css';
-
+import { GenerateHallTicket } from "./pages/GenerateHallTicket";
+import { UploadCsv } from "./pages/UploadCsv";
 
 
 function App() {
@@ -27,6 +28,8 @@ function App() {
           <Route path="/form"  > <Protected><ExamForm/></Protected></Route>
           <Route path="/details"   > <Protected><ViewStudentPage/></Protected></Route>
           <Route path="/form-status"   > <Protected><ViewAllStudents/></Protected></Route>
+          <Route path="/hall-ticket"   > <Protected><GenerateHallTicket/></Protected></Route>
+          <Route path="/upload-csv"   > <Protected><UploadCsv/></Protected></Route>
           {/* route of id of particular student for verification and edit */}
         </Switch>
       </Router>
