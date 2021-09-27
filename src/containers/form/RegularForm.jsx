@@ -5,7 +5,7 @@ import "./form.css";
 
 
 let Electives = ["IP", "ADBMS", "EL"];
-const baseURL = "http://localhost:2000/api/";
+const baseURL = "http://localhost:2000/api";
 
 
 export default function Veriform() {
@@ -29,11 +29,13 @@ export default function Veriform() {
     
   }
 
+  
 
   const handleSubmit = (e) => {
+    
     e.preventDefault();
-    Submit_Examform(baseURL +`examForm/submit`, student )
-    console.log(student);
+    Submit_Examform(baseURL +`/examForm/submit`, student )
+    console.log(student)
   };
 
   return (
@@ -61,6 +63,7 @@ export default function Veriform() {
                   name="Email"
                   value={student.Email}
                   onChange={handleChange}
+                  required
                 />
               </Col>
             </Row>
@@ -76,6 +79,7 @@ export default function Veriform() {
                   name="First_Name"
                   value={student.First_Name}
                   onChange={handleChange}
+                  required
                 />
               </Col>
             </Row>
@@ -91,6 +95,7 @@ export default function Veriform() {
                   name="Father_Name"
                   value={student.Father_Name}
                   onChange={handleChange}
+                  required
                 />
               </Col>
             </Row>
@@ -106,6 +111,7 @@ export default function Veriform() {
                   name="Last_Name"
                   value={student.Last_Name}
                   onChange={handleChange}
+                  required
                 />
               </Col>
             </Row>
@@ -121,6 +127,7 @@ export default function Veriform() {
                   name="Mother_Name"
                   value={student.Mother_Name}
                   onChange={handleChange}
+                  required
                 />
               </Col>
             </Row>
@@ -136,6 +143,7 @@ export default function Veriform() {
                   name="Mobile_No"
                   value={student.Mobile_No}
                   onChange={handleChange}
+                  required
                 />
               </Col>
             </Row>
@@ -151,6 +159,7 @@ export default function Veriform() {
                   name="Year"
                   value={student.Year}
                   onChange={handleChange}
+                  required
                 />
               </Col>
             </Row>
@@ -165,6 +174,7 @@ export default function Veriform() {
                   name="Department"
                   value={student.Department}
                   onChange={handleChange}
+                  required
                 />
               </Col>
             </Row>
@@ -180,6 +190,7 @@ export default function Veriform() {
                   name="Roll_No"
                   value={student.Roll_No}
                   onChange={handleChange}
+                  required
                 />
               </Col>
             </Row>
@@ -195,6 +206,7 @@ export default function Veriform() {
                   name="Sem"
                   value={student.Sem}
                   onChange={handleChange}
+                  required
                 />
               </Col>
             </Row>
@@ -209,6 +221,7 @@ export default function Veriform() {
                   aria-label="Default select example"
                   name="Elective"
                   onChange={handleChange}
+                  required
                 >
                   {Electives.map((item) => (
                     <option value={item} key={item}>
