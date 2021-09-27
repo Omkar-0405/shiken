@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import App from './app';
+import App from './App';
 import { StoreProvider } from './context/context';
 
 ReactDOM.render(
