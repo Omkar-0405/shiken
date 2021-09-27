@@ -1,5 +1,9 @@
-const initialState = {
+export const  initialUser =  {
     isAuthenticated: false,
-    userType: null,
-    user: {},
-};
+    userType: "faculty",
+    user:  {
+        sdrn: "123",
+        password: "pass@123",
+        role: "teacher"
+    },
+}

@@ -12,7 +12,7 @@ const ExamForm = (props) => {
     return (
         <div>
             <Layout>
-                <RegularForm />
+                <RegularForm student={{user:"from context"}} />
             </Layout>
 
         </div>

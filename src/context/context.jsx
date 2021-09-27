@@ -1,38 +1,31 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { createContext } from 'react'
 
-const user = [
-    {
-        isAuthenticated: true,
-        userType: "faculty",
-        user:  {
-            sdrn: "123",
-            password: "pass@123",
-            role: "teacher"
-        },
-    }
-   ,
-{
-    rollno: "100",
-    password: "abc",
-    role: "student",
-    
+// const user =  {
+//         isAuthenticated: true,
+//         userType: "faculty",
+//         user:  {
+//             sdrn: "123",
+//             password: "pass@123",
+//             role: "teacher"
+//         },
+//     }
 
-    isAuthenticated: false,
-    userType: "faculty",
-    user:  {
-        rollno: "100",
-        password: "pass@123",
-        role: "student"
-    },
-
-}
-
-]
 export const Store = createContext();
-
+// [user, setUser] = React.useState({
+//     isAuthenticated: false,
+//     userType: "faculty",
+//     user: {
+//         // token
+//         // role: "teacher"
+//     }
+// }
+// )
 export const StoreProvider = (props) => {
-    return <Store.Provider value={user} >
+    // const [user,setUser] = React.useState("")
+    return <Store.Provider 
+    // value={[user,setUser]}
+     >
         {props.children}
     </Store.Provider>;
 }
