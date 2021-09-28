@@ -1,4 +1,4 @@
-import React from "react";
+
 var CryptoJS = require("crypto-js");
 
 
