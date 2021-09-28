@@ -29,8 +29,6 @@ export default function Veriform() {
     
   }
 
-  
-
   const handleSubmit = (e) => {
     
     e.preventDefault();
@@ -42,7 +40,7 @@ export default function Veriform() {
     <div className="bg">
       <div className="mbody">
         <h2>
-          <b>Verification </b>
+          <b>Exam Form </b>
         </h2>
 
         <Form onSubmit={handleSubmit}>

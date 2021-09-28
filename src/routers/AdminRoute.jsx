@@ -8,7 +8,7 @@ const AdminRoute = ({ component: Component, ...rest }) => {
         <Route
             {...rest}
             component={(props) =>
-                isAuthenticated && userType === "student" ? (
+                isAuthenticated && userType === "faculty" ? (
                     <div>
                         <Component {...props} />
                     </div>
