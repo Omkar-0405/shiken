@@ -1,15 +1,15 @@
 import Types from './types'
 export const initialState = {
-    isAuthenticated: false,     
-    //i.e if token avaliable 
+    isAuthenticated: false,     //i.e if token avaliable 
     userType: "student",
     user: {
         // sdrn: "123",
-        // password: "Dypatil@100",
+        // name: name,
         // role: "teacher"  etc
     },
-    verifiedList:[]    
-    //for faculty to send verified list
+
+    studentList:[],
+    verifiedList:[]  //for faculty to send verified list
 }
 
 export const reducer = (state = initialState, action) => {
@@ -18,7 +18,8 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isAuthenticated: true,
-                userType: action.payload.userType
+                userType: action.payload.userType,
+                user:{...action.payload}
             };
 
         case Types.LOGIN_FAILED:
