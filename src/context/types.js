@@ -1,17 +1,18 @@
-export const type ={
-    //common types/consts
-}
 
-export const auth = {
-LOGIN_REQEST: "LOGIN_REQEST",
-LOGIN_SUCESS:"LOGIN_SUCESS",
+const Types = {
+LOGIN: "LOGIN",
 LOGIN_FAILED:"LOGIN_FAILED",
+LOGOUT:"LOGOUT",
 
-LOGOUT_REQUEST:"LOGOUT_Fail",
-LOGOUT_SUCESS:"LOGOUT_SUCESS" 
+SET_USER :"SET_USER",
+
+VERIFY:"VERIFY",
+VERIFY_ALL :"VERIFY_ALL"
 
 }
 
-export const verify ={
+// export const verify ={
     
-}
+// }
+
+export default Types;

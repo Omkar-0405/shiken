@@ -1,6 +1,6 @@
 import React,{ useState } from "react";
 import { Row, Col, Form, Button } from "react-bootstrap";
-import { Submit_Examform } from "../../api/api";
+import { postExamForm } from "../../api/api";
 import "./form.css";
 
 
@@ -32,7 +32,7 @@ export default function Veriform() {
   const handleSubmit = (e) => {
     
     e.preventDefault();
-    Submit_Examform(baseURL +`/examForm/submit`, student )
+    postExamForm(baseURL +`/examForm/submit`, student )
     console.log(student)
   };
 

@@ -24,8 +24,7 @@ const StudentForm = (props) => {
           let encryptedToken = EncryptData( res.data.token )
 
           localStorage.setItem( "student_token",encryptedToken)
-         
-
+          
           ToastifySuccess ( "Login Successfull")
           setTimeout(() => { his.push("/stud_home")}, 1500);
           return(

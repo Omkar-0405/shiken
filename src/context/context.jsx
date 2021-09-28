@@ -1,33 +1,18 @@
 import React from 'react'
-import { createContext } from 'react'
+import { createContext, useReducer } from 'react'
+import { initialState, reducer } from './reducer';
 
-// const user =  {
-//         isAuthenticated: true,
-//         userType: "faculty",
-//         user:  {
-//             sdrn: "123",
-//             password: "pass@123",
-//             role: "teacher"
-//         },
-//     }
+export const Context = createContext();
 
-export const Store = createContext();
-// [user, setUser] = React.useState({
-//     isAuthenticated: false,
-//     userType: "faculty",
-//     user: {
-//         // token
-//         // role: "teacher"
-//     }
-// }
-// )
-export const StoreProvider = (props) => {
-    // const [user,setUser] = React.useState("")
-    return <Store.Provider 
-    // value={[user,setUser]}
-     >
+export const ContextProvider = (props) => {
+    const [state, dispatch] = useReducer(reducer, initialState);
+    let value = { state, dispatch }
+    // to use this --->   destructure state and dispatch from useContext(Context)
+    return <Context.Provider
+        value={value}
+    >
         {props.children}
-    </Store.Provider>;
+    </Context.Provider>;
 }
 
 
