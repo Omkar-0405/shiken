@@ -6,6 +6,7 @@ import StudentForm from "./StudentForm";
 
 const LoginForm = () => {
   const his = useHistory()
+
    useEffect(()=>{
      if(localStorage.getItem("student_token")){
         return his.push("/stud_home")

@@ -7,9 +7,12 @@ import ExamForm from "./pages/ExamForm";
 import ViewAllStudents from "./pages/ViewAllStudentsPage";
 import StudHome from "./containers/home/StudentHome/Home";
 import FacHome from "./containers/home/FacultyHome/FacHome";
-import Protected from "./routers/Protected";
+import StudProtected from "./routers/ProtectedRoutes/StudProtected";
 import 'react-toastify/dist/ReactToastify.css';
+import AdminProtected from "./routers/ProtectedRoutes/AdminProtected";
+import { createContext } from "react";
 
+export const DataToken = createContext();
 
 
 function App() {
@@ -17,20 +20,24 @@ function App() {
   
   return (
     <div className="App">
-     
+     <DataToken.Provider>
       <Router>
         <Switch>
+         
            {/* public route */}
-           <Route path="/fac_home" ><Protected><FacHome/></Protected></Route>
-          <Route path="/stud_home" ><Protected><StudHome/></Protected></Route>
+          <Route path="/fac_home" ><AdminProtected><FacHome/></AdminProtected></Route>
+          <Route path="/details"   > <StudProtected><ViewStudentPage/></StudProtected></Route>
+          <Route path="/form-status"   > <AdminProtected><ViewAllStudents/></AdminProtected></Route>
+
           <Route exact path="/" ><LoginForm/></Route>
-          <Route path="/form"  > <Protected><ExamForm/></Protected></Route>
-          <Route path="/details"   > <Protected><ViewStudentPage/></Protected></Route>
-          <Route path="/form-status"   > <Protected><ViewAllStudents/></Protected></Route>
+
+          <Route path="/stud_home" ><StudProtected><StudHome/></StudProtected></Route>
+          <Route path="/form"  > <StudProtected><ExamForm/></StudProtected></Route>
+          
           {/* route of id of particular student for verification and edit */}
         </Switch>
       </Router>
-      
+      </DataToken.Provider>
     </div>
   );
 }

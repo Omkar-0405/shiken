@@ -9,7 +9,7 @@ const Illustration = () => {
     return (
         <div >
             <img src={img} height="500px" width="100%" alt="" />
-            <h6 style={style} > <b> You are not Loginned.<Link to="/login"> Click Here</Link> to LOGIN </b></h6>
+            <h6 style={style} > <b> You are not Loginned.<Link to="/"> Back To Login</Link></b></h6>
         </div>
     )
 }
