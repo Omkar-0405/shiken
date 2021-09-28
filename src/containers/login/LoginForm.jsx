@@ -6,14 +6,15 @@ import StudentForm from "./StudentForm";
 
 const LoginForm = () => {
   const his = useHistory()
-   useEffect(()=>{
-     if(localStorage.getItem("student_token")){
-        return his.push("/stud_home")
-     }
-     else if(localStorage.getItem("faculty_token")){
-       return his.push("/fac_home")
-     }
-   },[]) 
+
+  //  useEffect(()=>{
+  //    if(localStorage.getItem("student_token")){
+  //       return his.push("/stud_home")
+  //    }
+  //    else if(localStorage.getItem("faculty_token")){
+  //      return his.push("/fac_home")
+  //    }
+  //  },[]) 
 
 
   const [toggle, settoggle] = useState(true);

@@ -1,10 +1,14 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { ToastContainer } from 'react-toastify';
+import {  ToastContainer } from 'react-toastify';
+import { DataToken } from "../../App";
 import { ToastifyDanger, ToastifySuccess } from "../../components/Toast/Toastify";
 
-const StudentForm = () => {
+import {  EncryptData } from "./HashedToken/Hash";
+
+const StudentForm = (props) => {
+  
   const his = useHistory()
   const [rollno, setRollNo] = useState("");
   const [password, setPassword] = useState("");
@@ -14,21 +18,29 @@ const StudentForm = () => {
     const auth = {
       rollno, password, usertype: "student"
     }
-    axios.post(' http://localhost:2000/api/login ', auth)
-      .then((res) => {
+    axios.post(' http://localhost:2000/api/login ', auth )
+        .then((res)=>{
+          console.log("original token :" , res.data.token)
+          let encryptedToken = EncryptData( res.data.token )
 
-        localStorage.setItem("student_token", res.data.token)
-        localStorage.setItem("Role", res.data.student.Role)
+          localStorage.setItem( "student_token",encryptedToken)
+         
 
-        ToastifySuccess("Login Successfull")
-        return setTimeout(() => {
-          his.push("/stud_home")
-        }, 1500);
-      })
-      .catch((err) => {
-       // console.log(err)
-        ToastifyDanger("Authentication Fail")
-      })
+          ToastifySuccess ( "Login Successfull")
+          setTimeout(() => { his.push("/stud_home")}, 1500);
+          return(
+            <>
+              <DataToken.Provider value={res.data.token}>
+                {props.children}
+              </DataToken.Provider>
+            </>
+          ) 
+        }
+        )
+        .catch((err) =>{
+          ToastifyDanger( "Authentication Fail" )
+        })
+
     //clear form
     setRollNo("")
     setPassword("")
