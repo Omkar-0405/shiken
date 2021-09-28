@@ -12,12 +12,10 @@ const FacultyForm = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-
     const auth = {
       sdrn, password, usertype:"faculty"
     }
    
-
     axios.post('http://localhost:2000/api/login', auth )
         .then((res)=>{
           localStorage.setItem( "faculty_token",res.data.token)
@@ -28,8 +26,11 @@ const FacultyForm = () => {
           }, 1500);
         })
         .catch((err) =>{
+          //console.log(err)
           ToastifyDanger( "Authentication Fail" )
         })
+        setNumber("")
+        setPassword("")
 };
 
   return (<>
