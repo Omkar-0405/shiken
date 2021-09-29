@@ -24,18 +24,11 @@ const FacultyForm = (props) => {
         .then((res)=>{
           let encryptedToken = EncryptData(res.data.token)
           localStorage.setItem( "faculty_token", encryptedToken )
-          // localStorage.setItem( "Role", res.data.faculty.Role)
-          ToastifySuccess ( "Login Successfull")
-          setTimeout(() => { his.push("/fac_home")}, 1500);
-          return(
-            <>
-              <DataToken.Provider value={res.data.token}>
-                {props.children}
-              </DataToken.Provider>
-            </>
-          ) 
-             
           
+          ToastifySuccess ( "Login Successfull")
+          
+          return setTimeout(() => { his.push("/fac_home")}, 1500);
+        
         })
         .catch((err) =>{
           //console.log(err)

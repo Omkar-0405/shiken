@@ -1,9 +1,7 @@
 import axios from "axios";
 import React, { useRef } from "react";
-// import * as Fa  from "react-icons/fa";
-// import useFileDownloader from "hooks/useFileDownloader";
-import { ProgressBar } from "react-bootstrap";
-import { toast, ToastContainer } from 'react-toastify';
+
+import {  ToastContainer } from 'react-toastify';
 import { ToastifyDanger, ToastifySuccess } from "../Toast/Toastify";
 
 
@@ -49,7 +47,7 @@ const FileUploader = () => {
 
   return (
     <>
-       <div className="row justify-content-center bg-light">
+       <div className="row justify-content-center bg-white mt-5">
                 <div className="col-md-6 px-1 text-center">
                     <h2>Upload CSV</h2>
 

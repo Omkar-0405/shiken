@@ -5,8 +5,8 @@ import Alerts from '../../../components/alert';
 // import Tablee from '../../components/verifiedTable';
 import "./Home.css";
 import FileDownloader from '../../../components/FileDownloader';
-import FileUploader from '../../../components/FileUploader/FileUploader';
-import { Store } from '../../../context/context';
+
+// import { Store } from '../../../context/context';
 import Illustration from './Illustration';
 // import axios from 'axios';
 

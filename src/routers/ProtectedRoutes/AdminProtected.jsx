@@ -8,18 +8,23 @@ import { DecryptedToken } from '../../containers/login/HashedToken/Hash';
 
 
 const AdminProtected = (props) => {
-    const OriginalToken = useContext(DataToken)
+    // const OriginalToken = useContext(DataToken)
         const getLocalToken = ( ) => {
             // let token = localStorage.getItem('Role')
             let encryptedToken = localStorage.getItem('faculty_token')
-            let dtoken = DecryptedToken(encryptedToken)
+            // let dtoken = DecryptedToken(encryptedToken)
+            // console.log("token bhai", DataToken )
+            // if(OriginalToken === dtoken ){
+            //    return true
+            // }
+            // else return false
 
-            if(OriginalToken === dtoken ){
-               return true
-            }
-            else return false
+            if(encryptedToken){
+                   return true
+                }else return false
             
          }
+
          if(getLocalToken())
      {
         return (

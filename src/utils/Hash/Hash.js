@@ -20,7 +20,7 @@ export const EncryptObjectData = (data) => {
 }
 
 export const DecryptObjectData= ( data ) => {
-    let bytes  = CryptoJS.AES.decrypt(ciphertext, 'secret key 123');
+    let bytes  = CryptoJS.AES.decrypt(data, 'secret key 123');
     let decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
     return decryptedData
 }
