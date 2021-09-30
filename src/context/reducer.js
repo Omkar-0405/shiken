@@ -9,7 +9,8 @@ export const initialState = {
     },
 
     studentList:[],
-    verifiedList:[]  //for faculty to send verified list
+    verifiedList:[],  //for faculty to send verified list
+    filter:[]         // for using it in all other compo for updating data!
 }
 
 export const reducer = (state = initialState, action) => {

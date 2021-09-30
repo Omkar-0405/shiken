@@ -13,7 +13,7 @@ const StudProtected = (props) => {
         let encryptedToken = localStorage.getItem('student_token')
         let dtoken = DecryptedToken(encryptedToken)
 
-        // console.log("token bhai",`${OriginalToken}`)
+        // console.log("token ",`${OriginalToken}`)
 
         if( encryptedToken ){
            return true

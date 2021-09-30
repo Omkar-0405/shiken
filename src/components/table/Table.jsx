@@ -4,7 +4,7 @@ import MOCK_DATA from "../../assets/MOCK_DATA.json";
 import { VerificationButton } from "../button/Button";
 import { COLUMNS } from "./columns/Columns";
 import "./table.css";
-
+import Table from 'react-bootstrap/Table'
 
 export const BasicTable = () => {
   const columns = useMemo(() => COLUMNS, []);
@@ -21,7 +21,22 @@ export const BasicTable = () => {
     data
   });
 
+ const students = [
+    {
+      id: 1,
+      first_name: "krish"
+    },
+    {
+      id: 2,
+      first_name: "krish2"
+    },
+    {
+      id: 3,
+      first_name: "krish3"
+    },
+  ]
   return (
+    <>
     <table {...getTableProps()}>
       <thead>
         {headerGroups.map((headerGroup) => (
@@ -46,5 +61,7 @@ export const BasicTable = () => {
       </tbody>
       <VerificationButton />
     </table>
+
+    </>
   );
 };

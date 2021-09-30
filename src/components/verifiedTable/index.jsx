@@ -20,12 +20,12 @@ const Tablee = (props) => {
           {
           console.log(MOCK_DATA),
             MOCK_DATA.map(student => {
-              <tr key={student.sr_no}>
+             return (<tr key={student.sr_no}>
                 <td>{student.sr_no}</td>
                 <td>{student.first_name}</td>
                 <td>{student.last_name}</td>
                 <td>{student.status}</td>
-              </tr>
+              </tr>)
             })
 
           }
