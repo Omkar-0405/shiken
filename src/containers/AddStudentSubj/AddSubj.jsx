@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Col, Form, Row } from 'react-bootstrap';
+import { ToastContainer } from 'react-toastify';
 import { AddSubjApi } from '../../api/api';
 import Navbar from '../../components/layout/Navbar'
 
@@ -7,14 +8,14 @@ import Navbar from '../../components/layout/Navbar'
 
 const AddSubj = () => {
     const baseURL = "http://localhost:2000/api/";
-    const [AddSubj, setAddSubj] = useState({
+    const [Add, setAdd] = useState({
         
         Department:" ",
-        Sem: 5 ,
+        Sem: [] ,
         Subject_code:" ",
         Subject_name:" ",
         Subject_shortname:" ",
-        Year : 3 ,
+        Year : [] ,
         Elective:false,
         
       });
@@ -22,15 +23,16 @@ const AddSubj = () => {
 
       function handleChange(e){
         const{value, name}=e.target;
-        setAddSubj(prevValue=>({...prevValue,[name]:value}))
+        setAdd(prevValue=>({...prevValue,[name]:value}))
         
       }
       
       const handleSubmit = (e) => {
     
         e.preventDefault();
-        AddSubjApi(baseURL +`/subject/addSubject`, AddSubj )
-        console.log(AddSubj)
+        AddSubjApi(baseURL +`subject/addSubject`, Add )
+        console.log(Add)
+
       };
 
 
@@ -40,7 +42,7 @@ const AddSubj = () => {
         <div className="bg">
         <div className="mbody">
           <h2>
-            <b>Exam Form </b>
+            <b>Add Subject </b>
           </h2>
   
           <Form onSubmit={handleSubmit}>
@@ -57,9 +59,9 @@ const AddSubj = () => {
                 <Col lg={4} sm={12}>
                   <Form.Control
                     type="text"
-                    placeholder="example@mail.com"
+                    placeholder= " eg. CE, EXTC"
                     name="Department"
-                    value={AddSubj.Department}
+                    value={Add.Department}
                     onChange={handleChange}
                     required
                   />
@@ -73,9 +75,9 @@ const AddSubj = () => {
                 <Col lg={4} sm={12}>
                   <Form.Control
                     type="text"
-                    placeholder= "5"
+                    placeholder= "eg. 5 "
                     name="Sem"
-                    value={AddSubj.Sem}
+                    value={Add.Sem}
                     onChange={handleChange}
                     required
                   />
@@ -91,7 +93,7 @@ const AddSubj = () => {
                     type="text"
                     placeholder="Subject code"
                     name="Subject_code"
-                    value={AddSubj.Subject_code}
+                    value={Add.Subject_code}
                     onChange={handleChange}
                     required
                   />
@@ -107,7 +109,7 @@ const AddSubj = () => {
                     type="text"
                     placeholder="Subject_name"
                     name="Subject_name"
-                    value={AddSubj.Subject_name}
+                    value={Add.Subject_name}
                     onChange={handleChange}
                     required
                   />
@@ -123,7 +125,7 @@ const AddSubj = () => {
                     type="text"
                     placeholder="Subject_shortname"
                     name="Subject_shortname"
-                    value={AddSubj.Subject_shortname}
+                    value={Add.Subject_shortname}
                     onChange={handleChange}
                     required
                   />
@@ -137,9 +139,9 @@ const AddSubj = () => {
                 <Col lg={4} sm={12}>
                   <Form.Control
                     type="text"
-                    placeholder="TE"
+                    placeholder="eg. TE"
                     name="Year"
-                    value={AddSubj.Year}
+                    value={Add.Year}
                     onChange={handleChange}
                     required
                   />
@@ -155,7 +157,7 @@ const AddSubj = () => {
                     type="text"
                     placeholder="Elective"
                     name="Elective"
-                    value={AddSubj.Elective}
+                    value={Add.Elective}
                     onChange={handleChange}
                     required
                   />
@@ -170,6 +172,7 @@ const AddSubj = () => {
         </div>
         
       </div>
+      <ToastContainer/>
       </Navbar>  
     )
 }

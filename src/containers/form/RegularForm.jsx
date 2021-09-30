@@ -1,5 +1,6 @@
 import React,{ useState } from "react";
 import { Row, Col, Form, Button } from "react-bootstrap";
+import { ToastContainer } from "react-toastify";
 import { postExamForm } from "../../api/api";
 import "./form.css";
 
@@ -235,7 +236,7 @@ export default function Veriform() {
           </fieldset>
         </Form>
       </div>
-      
+      <ToastContainer/>
     </div>
   );
 }

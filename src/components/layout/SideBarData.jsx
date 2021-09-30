@@ -53,5 +53,10 @@ export const SideBarData = [
     icon: <AiFillFileAdd size={25}/>,
     link: "/upload-csv",
   },
+  {
+    title: "Add Subjects",
+    icon: <AiFillFileAdd size={25}/> ,
+    link: "/addsubj",
+  }
 
 ];

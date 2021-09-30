@@ -13,6 +13,7 @@ import AdminProtected from "./routers/ProtectedRoutes/AdminProtected";
 import { createContext } from "react";
 import {GenerateHallTicket} from './pages/GenerateHallTicket/index'
 import { UploadCsv } from  './pages/UploadCsv/index'
+import AddSubj from "./containers/AddStudentSubj/AddSubj";
 
 export const DataToken = createContext();
 
@@ -31,16 +32,19 @@ function App() {
          
            {/* public route */}
           <Route path="/fac_home" ><AdminProtected><FacHome/></AdminProtected></Route>
-          <Route path="/details"   > <StudProtected><ViewStudentPage/></StudProtected></Route>
+          <Route path="/hall-ticket"   > <AdminProtected><GenerateHallTicket/></AdminProtected></Route>
+          <Route path="/upload-csv"   > <AdminProtected><UploadCsv/></AdminProtected></Route>
+          <Route path="/addsubj"   > <AdminProtected><AddSubj/></AdminProtected></Route>
           <Route path="/form-status"   > <AdminProtected><ViewAllStudents/></AdminProtected></Route>
 
           <Route exact path="/" ><LoginForm/></Route>
-
+          
+          <Route path="/details"   > <StudProtected><ViewStudentPage/></StudProtected></Route>
           <Route path="/stud_home" ><StudProtected><StudHome/></StudProtected></Route>
           <Route path="/form"  > <StudProtected><ExamForm/></StudProtected></Route>
           
-          <Route path="/hall-ticket"   > <AdminProtected><GenerateHallTicket/></AdminProtected></Route>
-          <Route path="/upload-csv"   > <AdminProtected><UploadCsv/></AdminProtected></Route>
+          
+
           {/* route of id of particular student for verification and edit */}
         </Switch>
       </Router>

@@ -24,7 +24,8 @@ const StudentForm = (props) => {
           let encryptedToken = EncryptData( res.data.token )
 
           localStorage.setItem( "student_token",encryptedToken)
-          
+          localStorage.setItem("Role", auth.usertype)
+
           ToastifySuccess ( "Login Successfull")
           
           return setTimeout(() => {

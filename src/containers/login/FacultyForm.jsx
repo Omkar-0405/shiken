@@ -24,6 +24,7 @@ const FacultyForm = (props) => {
         .then((res)=>{
           let encryptedToken = EncryptData(res.data.token)
           localStorage.setItem( "faculty_token", encryptedToken )
+          localStorage.setItem("Role", auth.usertype)
           
           ToastifySuccess ( "Login Successfull")
           
