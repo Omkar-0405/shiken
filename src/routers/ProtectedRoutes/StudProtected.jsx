@@ -7,15 +7,15 @@ import { DecryptedToken } from '../../containers/login/HashedToken/Hash'
 
 
 const StudProtected = (props) => {
-    const OriginalToken = useContext(DataToken)
+    // const OriginalToken = useContext(DataToken)
 
     const getLocalToken = ( ) => {
         let encryptedToken = localStorage.getItem('student_token')
         let dtoken = DecryptedToken(encryptedToken)
 
-        console.log("token bhai",`${OriginalToken}`)
+        // console.log("token bhai",`${OriginalToken}`)
 
-        if( `${OriginalToken}` ===  dtoken ){
+        if( encryptedToken ){
            return true
         }
         else return false

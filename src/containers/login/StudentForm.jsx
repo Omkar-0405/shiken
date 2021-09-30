@@ -26,16 +26,13 @@ const StudentForm = (props) => {
           localStorage.setItem( "student_token",encryptedToken)
           
           ToastifySuccess ( "Login Successfull")
-          setTimeout(() => { his.push("/stud_home")}, 1500);
-          return(
-            <>
-              <DataToken.Provider value={res.data.token}>
-                {props.children}
-              </DataToken.Provider>
-            </>
-          ) 
-        }
-        )
+          
+          return setTimeout(() => {
+            his.push('/stud_home')
+          },1500)
+          
+        })
+        
         .catch((err) =>{
           ToastifyDanger( "Authentication Fail" )
         })
