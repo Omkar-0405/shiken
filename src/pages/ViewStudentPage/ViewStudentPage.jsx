@@ -11,13 +11,9 @@ const ViewStudentPage = (props) => {
   return (
     <>
       <Layout>
-        <ViewForm >
+            <ViewForm >
       {/* pass student obj as props and make editable student={student} */}
-          <div className="btn-sec" style={{ display: "flex", justifyContent: "right" }}>
-            <EditButton />
-            <VerificationButton />
-
-          </div>
+          
         </ViewForm>
 
       </Layout>
