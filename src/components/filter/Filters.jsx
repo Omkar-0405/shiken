@@ -1,9 +1,11 @@
-import React from "react";
+import React ,{useState} from "react";
 import "./filters.css";
-import { Container, Row, Col, Form } from "react-bootstrap";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { CustumButton } from "../button/Button";
 import {FiSearch} from "react-icons/fi";
+
 function Filter() {
+  const [filter,setFilter] = useState({})
   return (
     <div className="filter">
 
@@ -38,7 +40,9 @@ function Filter() {
               </Form.Group>
             </Col>
             <Col lg="4">
-      <CustumButton variant="outline-danger" name="Load" icon={<FiSearch/>} style={{}} />
+      <Button variant="outline-danger" name="Load" icon={<FiSearch/>} style={{marginTop:"2rem"}} >
+    Load <FiSearch/>
+      </Button>
             </Col>
           </Row>
         </Form>
