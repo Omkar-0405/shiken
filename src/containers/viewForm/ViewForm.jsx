@@ -2,6 +2,24 @@ import { Row, Col, Form, Button } from "react-bootstrap";
 import "./ViewForm.css";
 
 export const ViewForm = (props) => {
+  console.log("props",props.student)
+  let studentData 
+  // check if props state is not empty 
+  if(Object.keys(props.student).length === 0 ){
+    studentData =   {
+      first_name: "",
+      last_name: "",
+      roll_no: "",
+      sr_no: 3,
+      status: true,
+    } //use user Object of istate 
+  }
+  else {
+
+    studentData = props.student
+  }
+
+
   return (
     <div className="bg">
       <div className="mbody">
@@ -22,7 +40,9 @@ export const ViewForm = (props) => {
                     Student Name:
                   </Form.Label>
                   <Col lg={12} sm={12}>
-                    <Form.Control type="text" placeholder="Student Name" />
+                    <Form.Control type="text" placeholder="Student Name"
+                    value ={`${studentData.first_name}  ${studentData.last_name} `}
+                    />
                   </Col>
                 </Row>
 
@@ -31,7 +51,9 @@ export const ViewForm = (props) => {
                     Roll No. :
                   </Form.Label>
                   <Col lg={12} sm={12}>
-                    <Form.Control type="text" placeholder="Roll no" />
+                    <Form.Control type="text" placeholder="Roll no" 
+                    value = {studentData.roll_no}
+                    />
                   </Col>
                 </Row>
 

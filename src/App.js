@@ -12,8 +12,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import AdminProtected from "./routers/ProtectedRoutes/AdminProtected";
 import { createContext } from "react";
 
-import {GenerateHallTicket} from './pages/GenerateHallTicket/index'
-import { UploadCsv } from  './pages/UploadCsv/index'
+import { GenerateHallTicket } from './pages/GenerateHallTicket/index'
+import { UploadCsv } from './pages/UploadCsv/index'
 import AddSubj from "./containers/AddStudentSubj/AddSubj";
 
 
@@ -29,7 +29,7 @@ function App() {
 
   return (
     <div className="App">
-    
+
       <DataToken.Provider>
         <Router>
           <Switch>
@@ -38,21 +38,23 @@ function App() {
             <Route exact path="/" ><LoginForm /></Route>
 
             {/* routes for admin only*/}
-            <Route path="/form-status"   > <AdminProtected><ViewAllStudents /></AdminProtected></Route>
-            <Route path="/fac_home" ><AdminProtected><FacHome /></AdminProtected></Route>
-            <Route path="/hall-ticket"   > <AdminProtected><GenerateHallTicket /></AdminProtected></Route>
-            <Route path="/upload-csv"   > <AdminProtected><UploadCsv /></AdminProtected></Route>
-            <Route path="/addsubj"   > <AdminProtected><AddSubj/></AdminProtected></Route>
-            
-            {/* routes for verified students only*/}
-            <Route path="/stud_home" ><StudProtected><StudHome /></StudProtected></Route>
-            <Route path="/form"  > <StudProtected><ExamForm /></StudProtected></Route>
-            <Route path="/details"   > <StudProtected><ViewStudentPage /></StudProtected></Route>
+            <Route path="/form-status"> <AdminProtected>  <ViewAllStudents /> </AdminProtected></Route>
+            <Route path="/fac_home">    <AdminProtected>  <FacHome />         </AdminProtected></Route>
+            <Route path="/hall-ticket"> <AdminProtected>  <GenerateHallTicket/> </AdminProtected></Route>
+            <Route path="/upload-csv">  <AdminProtected>  <UploadCsv />         </AdminProtected></Route>
+            <Route path="/addsubj">     <AdminProtected>  <AddSubj />           </AdminProtected></Route>
+            <Route path="/student/:slug" >  <ViewStudentPage /> </Route>
 
-          </Switch>
-        </Router>
-      </DataToken.Provider>
-    </div>
+
+          {/* routes for verified students only*/}
+          <Route path="/stud_home" ><StudProtected><StudHome /></StudProtected></Route>
+          <Route path="/form"  > <StudProtected><ExamForm /></StudProtected></Route>
+          <Route exact path="/details"  > <StudProtected><ViewStudentPage /></StudProtected></Route>
+
+        </Switch>
+      </Router>
+    </DataToken.Provider>
+    </div >
   );
 }
 
