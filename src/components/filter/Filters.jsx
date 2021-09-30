@@ -16,6 +16,9 @@ const handleFilter = () =>{
     semester,
     department
   }
+  if( semester && department){
+    //dispatch actions!
+  }
   console.log("filter",filter)
 }
 
