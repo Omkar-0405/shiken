@@ -44,7 +44,7 @@ export const SideBarData = [
   },
 
   {
-    title: "Generate Hall Ticket",
+    title: "Hall Ticket",
     icon: <AiOutlineFileDone size={25}/>,
     link: "/hall-ticket",
   },
