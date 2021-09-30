@@ -11,30 +11,26 @@ import { useLocation } from "react-router-dom";
 
 const ViewStudentPage = (props) => {
   const location = useLocation()
-  console.log("loc",location.state)
-  let student 
-  if(location.state !== undefined){
-     student = location.state.student
+  console.log("loc", location.state)
+  let student
+  if (location.state !== undefined) {
+    student = location.state.student
   }
   else {
     student = {}
   }
- 
+
 
   return (
     <>
       <Layout>
         {/* pass student obj as props and make editable student={student} */}
-        <ViewForm 
-        student={student} 
-        >
-      
+        <ViewForm student={student} >
           <div className="btn-sec" style={{ display: "flex", justifyContent: "right" }}>
             <EditButton />
             <VerificationButton />
           </div>
         </ViewForm>
-
       </Layout>
     </>
   )
