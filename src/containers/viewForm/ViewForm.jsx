@@ -4,6 +4,7 @@ import { Done, EditButton, VerificationButton } from "../../components/button/Bu
 import "./ViewForm.css";
 
 export const ViewForm = (props) => {
+  const [disabled, setDisabled] = useState(true)
   console.log("props", props.student)
   let studentData
   // check if props state is not empty 
@@ -20,7 +21,17 @@ export const ViewForm = (props) => {
 
     studentData = props.student
   }
+  const EditBtn = ( ) => {
+    setDisabled(!disabled)
+  }
 
+  const Verified = ( ) => {
+    setDisabled(!disabled)
+  }
+
+  const DoneEditForm = ( ) => {
+    setDisabled(!disabled)
+  }
 
   return (
     <div className="bg">

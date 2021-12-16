@@ -56,7 +56,7 @@ console.log("state",state)
                 Student
               </button>
               <button onClick={toggleHandlerFaculty} className="btn-1">
-                Faculty
+                Admin
               </button>
             </div>
             {formHandler()}
