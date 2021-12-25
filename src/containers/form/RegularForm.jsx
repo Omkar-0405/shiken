@@ -1,40 +1,36 @@
-import React,{ useState } from "react";
+import React, { useState } from "react";
 import { Row, Col, Form, Button } from "react-bootstrap";
 import { ToastContainer } from "react-toastify";
 import { postExamForm } from "../../api/api";
 import "./form.css";
 
-
 let Electives = ["IP", "ADBMS", "EL"];
 const baseURL = "http://localhost:2000/api";
 
-
 export default function Veriform() {
-  const [student, setStudent]=useState({
-    Email:"",
-    First_Name:"",
-    Father_Name:"",
-    Mother_Name:"",
-    Last_Name:"",
-    Mobile_No:"",
-    Year:"",
-    Department:"",
-    Roll_No:"",
-    Sem:"",
-    Elective:Electives[0]
+  const [student, setStudent] = useState({
+    Email: "",
+    First_Name: "",
+    Father_Name: "",
+    Mother_Name: "",
+    Last_Name: "",
+    Mobile_No: "",
+    Year: "",
+    Department: "",
+    Roll_No: "",
+    Sem: "",
+    Elective: Electives[0],
   });
 
-  function handleChange(e){
-    const{value, name}=e.target;
-    setStudent(prevValue=>({...prevValue,[name]:value}))
-    
+  function handleChange(e) {
+    const { value, name } = e.target;
+    setStudent((prevValue) => ({ ...prevValue, [name]: value }));
   }
 
   const handleSubmit = (e) => {
-    
     e.preventDefault();
-    postExamForm(baseURL +`/examForm/submit`, student )
-    console.log(student)
+    postExamForm(baseURL + `/examForm/submit`, student);
+    console.log(student);
   };
 
   return (
@@ -74,7 +70,7 @@ export default function Veriform() {
               <Col lg={4} sm={12}>
                 <Form.Control
                   type="text"
-                  placeholder="Name"
+                  placeholder="First Name"
                   name="First_Name"
                   value={student.First_Name}
                   onChange={handleChange}
@@ -90,7 +86,7 @@ export default function Veriform() {
               <Col lg={4} sm={12}>
                 <Form.Control
                   type="text"
-                  placeholder="Name"
+                  placeholder="Father Name"
                   name="Father_Name"
                   value={student.Father_Name}
                   onChange={handleChange}
@@ -106,7 +102,7 @@ export default function Veriform() {
               <Col lg={4} sm={12}>
                 <Form.Control
                   type="text"
-                  placeholder="Name"
+                  placeholder="Last Name"
                   name="Last_Name"
                   value={student.Last_Name}
                   onChange={handleChange}
@@ -122,7 +118,7 @@ export default function Veriform() {
               <Col lg={4} sm={12}>
                 <Form.Control
                   type="text"
-                  placeholder="Name"
+                  placeholder="Mother Name"
                   name="Mother_Name"
                   value={student.Mother_Name}
                   onChange={handleChange}
@@ -138,7 +134,7 @@ export default function Veriform() {
               <Col lg={4} sm={12}>
                 <Form.Control
                   type="text"
-                  placeholder="8888"
+                  placeholder="Phone Number"
                   name="Mobile_No"
                   value={student.Mobile_No}
                   onChange={handleChange}
@@ -154,7 +150,7 @@ export default function Veriform() {
               <Col lg={4} sm={12}>
                 <Form.Control
                   type="text"
-                  placeholder="TE"
+                  placeholder="FE/SE/TE"
                   name="Year"
                   value={student.Year}
                   onChange={handleChange}
@@ -171,6 +167,7 @@ export default function Veriform() {
                 <Form.Control
                   type="text"
                   name="Department"
+                  placeholder="CE/IT/EXTC"
                   value={student.Department}
                   onChange={handleChange}
                   required
@@ -185,7 +182,7 @@ export default function Veriform() {
               <Col lg={4} sm={12}>
                 <Form.Control
                   type="text"
-                  placeholder="1234"
+                  placeholder="Roll Number"
                   name="Roll_No"
                   value={student.Roll_No}
                   onChange={handleChange}
@@ -201,7 +198,7 @@ export default function Veriform() {
               <Col lg={4} sm={12}>
                 <Form.Control
                   type="text"
-                  placeholder="5"
+                  placeholder="eg.1"
                   name="Sem"
                   value={student.Sem}
                   onChange={handleChange}
@@ -236,18 +233,15 @@ export default function Veriform() {
           </fieldset>
         </Form>
       </div>
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 }
-
-
 
 // import { useState } from "react";
 // import { Row, Col, Form, Button } from "react-bootstrap";
 // import { Submit_Examform, baseURL } from "../../api/api";
 // import "./form.css";
-
 
 // let Electives = ["IP", "ADBMS", "EL"];
 
@@ -281,10 +275,8 @@ export default function Veriform() {
 //     };
 //     console.log(exam_form);
 //     Submit_Examform(baseURL +`examForm/submit`, exam_form )
-    
-//   };
 
-  
+//   };
 
 //   return (
 //     <div className="bg">
