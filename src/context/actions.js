@@ -35,24 +35,31 @@ export const login = async (user, dispatch) => {
     .catch((err) => {
       console.log(err);
       return null;
-      // ToastifyDanger( "Authentication Fail" )
+      // return login fail type
     });
-  console.log("userData", typeof userData?.token);
   //  userData = {
   //  faculty: {id: 124, Sdrn: 123, First_name: 'JAY', Middle_name: 'SHAFEEN', Last_name: 'GHAYAR', …}
   // message: "Authentication Successful"
   // token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXV
   //  }
 
-  //  loginUser(user)
-  //  .then({
-  // userData = res
-  //  })
   // call api here! and pass response as payload
-  return dispatch({
-    type: Types.LOGIN,
-    payload: userData,
-  });
+  if (userData && userData.faculty) {
+    return dispatch({
+      type: Types.LOGIN_FACULTY,
+      payload: userData,
+    });
+  } else if (userData && userData.student) {
+    return dispatch({
+      type: Types.LOGIN_STUDENT,
+      payload: userData,
+    });
+  } else {
+    return dispatch({
+      type: Types.LOGIN_FAILED,
+    });
+  }
+
   // else call another type in catch i.e LOGIN_FAIL
 };
 

@@ -9,10 +9,7 @@ import { testAction } from "../../../context/actions";
 const FacHome = (props) => {
   const { state, dispatch } = useContext(Context);
   console.log("state in home", state);
-  const testingStore = () => {
-    testAction(state, dispatch);
-    console.log("state after action called", state);
-  };
+
   return (
     <>
       <Layout>
@@ -20,7 +17,6 @@ const FacHome = (props) => {
           <div className="box">
             <h1 className="mt-1">Welcome </h1>
             <h2 style={{ color: "#9b0909" }}>Updates!</h2>
-            <button onClick={testingStore}>TEST</button>
             <hr />
             <Alerts
               variant="success"

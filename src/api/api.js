@@ -1,20 +1,12 @@
 import axios from "axios";
 import { ToastifyDanger, ToastifySuccess } from "../components/Toast/Toastify";
+const baseURL = "http://localhost:2000/api/";
+let headers = {
+  "Content-Type": "application/json",
+};
 
-// export const baseURL = "http://localhost:2000/api/";
-
-export const loginUser = (data) => {
-  axios
-    .post("http://localhost:2000/api/login", data)
-    .then((res) => {
-      console.log("res sent from api ", res);
-      return res;
-    })
-    .catch((err) => {
-      console.log(err);
-      return null;
-      // ToastifyDanger( "Authentication Fail" )
-    });
+export const loginUser = async (data) => {
+  const response = await axios.post(`${baseURL}/login`, data);
 };
 
 export async function postExamForm(URL, student) {
