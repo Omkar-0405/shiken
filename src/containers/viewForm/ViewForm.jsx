@@ -1,7 +1,38 @@
+import { useState } from "react";
 import { Row, Col, Form, Button } from "react-bootstrap";
+import { Done, EditButton, VerificationButton } from "../../components/button/Button";
 import "./ViewForm.css";
 
 export const ViewForm = (props) => {
+  const [disabled, setDisabled] = useState(true)
+  console.log("props", props.student)
+  let studentData
+  // check if props state is not empty 
+  if (Object.keys(props.student).length === 0) {
+    studentData = {
+      first_name: "",
+      last_name: "",
+      roll_no: "",
+      sr_no: 3,
+      status: true,
+    } //use user Object of istate 
+  }
+  else {
+
+    studentData = props.student
+  }
+  const EditBtn = ( ) => {
+    setDisabled(!disabled)
+  }
+
+  const Verified = ( ) => {
+    setDisabled(!disabled)
+  }
+
+  const DoneEditForm = ( ) => {
+    setDisabled(!disabled)
+  }
+
   return (
     <div className="bg">
       <div className="mbody">
@@ -19,10 +50,12 @@ export const ViewForm = (props) => {
                 {/* left section */}
                 <Row>
                   <Form.Label column lg={4} sm={12}>
-                    Student Name :
+                    Student Name:
                   </Form.Label>
                   <Col lg={12} sm={12}>
-                    <Form.Control type="text" placeholder="Student Name" />
+                    <Form.Control type="text" placeholder="Student Name"
+                      value={`${studentData.first_name}  ${studentData.last_name} `}
+                    />
                   </Col>
                 </Row>
 
@@ -31,7 +64,9 @@ export const ViewForm = (props) => {
                     Roll No. :
                   </Form.Label>
                   <Col lg={12} sm={12}>
-                    <Form.Control type="text" placeholder="Roll no" />
+                    <Form.Control type="text" placeholder="Roll no"
+                      value={studentData.roll_no}
+                    />
                   </Col>
                 </Row>
 
@@ -40,7 +75,7 @@ export const ViewForm = (props) => {
                     Branch :
                   </Form.Label>
                   <Col lg={12} sm={12}>
-                    <Form.Control type="text" placeholder="Branch" />
+                    <Form.Control type="text" placeholder="Branch" disabled={disabled} />
                   </Col>
                 </Row>
               </Col>
@@ -55,7 +90,7 @@ export const ViewForm = (props) => {
                     Academic Year :
                   </Form.Label>
                   <Col lg={12} sm={12}>
-                    <Form.Control type="text" placeholder="Year" />
+                    <Form.Control type="text" placeholder="Year" disabled={disabled} />
                   </Col>
                 </Row>
 
@@ -64,7 +99,7 @@ export const ViewForm = (props) => {
                     Semester :
                   </Form.Label>
                   <Col lg={12} sm={12}>
-                    <Form.Control type="text" placeholder="Sem" />
+                    <Form.Control type="text" placeholder="Sem" disabled={disabled} />
                   </Col>
                 </Row>
 
@@ -73,7 +108,7 @@ export const ViewForm = (props) => {
                     Email-ID :
                   </Form.Label>
                   <Col lg={12} sm={12}>
-                    <Form.Control type="text" placeholder="Email" />
+                    <Form.Control type="text" placeholder="Email" disabled={disabled} />
                   </Col>
                 </Row>
 
@@ -82,17 +117,22 @@ export const ViewForm = (props) => {
                     Mobile number :
                   </Form.Label>
                   <Col lg={12} sm={12}>
-                    <Form.Control type="text" placeholder="Phone Number" />
+                    <Form.Control type="text" placeholder="Phone Number" disabled={disabled} />
                   </Col>
                 </Row>
               </Col>
             </Row>
+            <div className="btn-sec" style={{ display: "flex", justifyContent: "right" }}>
+              {disabled ? <EditButton click={EditBtn} /> : ""}
+              {disabled ? <VerificationButton click={Verified} /> : <Done click={DoneEditForm} />}
+
+            </div>
 
             {props.children}
             {/* for buttons */}
           </fieldset>
         </Form>
-          
+
       </div>
     </div>
   );

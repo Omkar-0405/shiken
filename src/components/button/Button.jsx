@@ -9,10 +9,12 @@ import "./btn.css"
 * @function Button
 **/
 
+
+
 export const EditButton = (props) => {
     return (
         <div>
-            <Button variant="outline-primary" className="fbtn" onClick={props.onClick}>
+            <Button variant="outline-primary" className="fbtn" onClick={props.click}>
                 <AiTwotoneEdit size="25" style={{ paddingRight: "3px" }} /> Edit
             </Button>
 
@@ -37,11 +39,21 @@ export const DownloadButton = (props) => {
 export const VerificationButton = (props) => {
     return (
         <div>
-            <Button variant="outline-success" className="fbtn" onClick={props.onClick}>
-                <GoVerified size="25" style={{ paddingRight: "3px" }} /> Verify
+            <Button variant="outline-success" className="fbtn" onClick={props.click}>
+                <GoVerified size="25" style={{ paddingRight: "3px" }} /> Verify 
             </Button> </div>
     )
 
+}
+
+export const Done = (props) => {
+    return(
+        <div>
+            <Button variant="outline-success" className="fbtn" onClick={props.click}>
+                <GoVerified size="25" style={{ paddingRight: "3px" }} /> Done 
+            </Button> 
+        </div>
+    )
 }
 
 export const CustumButton = (props) => {
@@ -55,3 +67,4 @@ export const CustumButton = (props) => {
     )
 
 }
+

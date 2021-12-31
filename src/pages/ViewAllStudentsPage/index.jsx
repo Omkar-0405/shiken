@@ -1,8 +1,9 @@
 import React from 'react'
 import Filter from '../../components/filter/Filters'
-import Layout from '../../components/layout/component/Navbar'
+import Layout from '../../components/layout/Navbar'
 import { BasicTable } from '../../components/table/Table'
 import TableHeading from '../../components/table/TableHeading'
+
 
 /**
 * @author
@@ -10,6 +11,7 @@ import TableHeading from '../../components/table/TableHeading'
 **/
 
 const ViewAllStudents = (props) => {
+
   return(
     <div>
       <Layout>
@@ -22,6 +24,7 @@ const ViewAllStudents = (props) => {
       </Layout>
     </div>
    )
+ 
   }
 
 

@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
+import { Context } from "../../context/context";
 import FacultyForm from "./FacultyForm";
 import "./LoginForm.css";
 import StudentForm from "./StudentForm";
 
 const LoginForm = () => {
+  const his = useHistory();
+  const { state, dispatch } = useContext(Context);
+
   const [toggle, settoggle] = useState(true);
 
   const toggleHandlerFaculty = () => {
@@ -40,7 +45,7 @@ const LoginForm = () => {
                 Student
               </button>
               <button onClick={toggleHandlerFaculty} className="btn-1">
-                Faculty
+                Admin
               </button>
             </div>
             {formHandler()}

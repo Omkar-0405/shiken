@@ -1,32 +1,18 @@
-import React, { useState } from 'react'
-import { createContext } from 'react'
+import React from 'react'
+import { createContext, useReducer } from 'react'
+import { initialState, reducer } from './reducer';
 
-/**
-* @author
-* @function GlobalState
-**/
-const UserContext = createContext(undefined);
+export const Context = createContext();
 
-const Auth = (props) => {
-    const [state, setAuth] = useState([  {
-        sdrn: "123",
-        password: "123",
-        role:"teacher"
-    },
-    {
-        rollno: "100",
-        password: "abc",
-        role:"student"
-    }
-
-]
-      
-    )
-
-    return (
-        <div>GlobalState</div>
-    )
+export const ContextProvider = (props) => {
+    const [state, dispatch] = useReducer(reducer, initialState);
+    let value = { state, dispatch }
+    // to use this --->   destructure state and dispatch from useContext(Context)
+    return <Context.Provider
+        value={value}
+    >
+        {props.children}
+    </Context.Provider>;
 }
 
 
-export default GlobalState
