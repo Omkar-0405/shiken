@@ -25,43 +25,28 @@ const FacultyForm = (props) => {
       usertype: "faculty",
     };
 
-    login(auth, dispatch)
-      .then(() => {
-        if (state?.auth?.isAuthenticated) {
-          console.log("login sucessful", state);
-          alert(state?.auth?.isAuthenticated);
-          let encryptedToken = EncryptStringData(state.auth?.token);
-          localStorage.setItem("faculty_token", encryptedToken);
-          localStorage.setItem("Role", auth.usertype);
-          ToastifySuccess("Login Successfull");
-          return setTimeout(() => {
-            his.push("/fac_home");
-          }, 1500);
-        }
-      })
-      .catch(() => {
-        ToastifyDanger("Authentication Fail");
-      });
+    login(auth, dispatch);
 
-    // axios.post("http://localhost:2000/api/login", auth).then((res) => {
-    //   let encryptedToken = EncryptData(res.data.token);
-    //   localStorage.setItem("faculty_token", encryptedToken);
-    //   localStorage.setItem("Role", auth.usertype);
-
-    //   ToastifySuccess("Login Successfull");
-
-    //   return setTimeout(() => {
-    //     his.push("/fac_home");
-    //   }, 1500);
-    // });
-    // .catch((err) => {
-    //   //console.log(err)
-    //   ToastifyDanger("Authentication Fail");
-    // });
     setNumber("");
     setPassword("");
   };
 
+  React.useEffect(() => {
+    if (state?.auth?.isAuthenticated && state?.auth?.userType == "Faculty") {
+      let encryptedToken = EncryptStringData(state.auth.token);
+      localStorage.setItem("faculty_token", encryptedToken);
+      localStorage.setItem("Role", state.auth.userType);
+      ToastifySuccess("Login Successfull");
+      return setTimeout(() => {
+        his.push("/fac_home");
+      }, 1200);
+    } else if (
+      state?.auth?.isAuthenticated &&
+      state?.auth?.userType == "student"
+    ) {
+      return his.push("/stud_home");
+    }
+  }, [state]);
   return (
     <>
       <form action="" onSubmit={submitHandler}>

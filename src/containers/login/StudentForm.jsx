@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState, useContext } from "react";
+import { Next } from "react-bootstrap/esm/PageItem";
 import { useHistory } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { DataToken } from "../../App";
@@ -25,51 +26,30 @@ const StudentForm = (props) => {
       usertype: "student",
     };
 
-    login(auth, dispatch)
-      .then(() => {
-        console.log("chomakar ", state.auth.isAuthenticated);
-        if (state.auth.isAuthenticated) {
-          console.log("original token :", state.auth.token);
-          let encryptedToken = EncryptStringData(state.auth.token);
-
-          localStorage.setItem("student_token", encryptedToken);
-          localStorage.setItem("Role", auth.usertype);
-
-          ToastifySuccess("Login Successfull");
-
-          return setTimeout(() => {
-            his.push("/stud_home");
-          }, 1500);
-        }
-      })
-      .catch(() => {
-        ToastifyDanger("Authentication Fail");
-      });
-
-    // axios
-    //   .post(" http://localhost:2000/api/login ", auth)
-    //   .then((res) => {
-    // console.log("original token :", res.data.token);
-    // let encryptedToken = EncryptData(res.data.token);
-
-    // localStorage.setItem("student_token", encryptedToken);
-    // localStorage.setItem("Role", auth.usertype);
-
-    // ToastifySuccess("Login Successfull");
-
-    // return setTimeout(() => {
-    //   his.push("/stud_home");
-    // }, 1500);
-    //  })
-
-    //   .catch((err) => {
-    //     ToastifyDanger("Authentication Fail");
-    //   });
+    login(auth, dispatch);
 
     //clear form
     setRollNo("");
     setPassword("");
   };
+
+  React.useEffect(() => {
+    if (state.auth.isAuthenticated && state.auth.userType == "student") {
+      console.log("state after login", state);
+      if (state?.auth?.isAuthenticated) {
+        console.log("original token :", state.auth.token);
+        let encryptedToken = EncryptStringData(state.auth.token);
+        localStorage.setItem("student_token", encryptedToken);
+        localStorage.setItem("Role", state.auth.usertype);
+        ToastifySuccess("Login Successfull");
+        return setTimeout(() => {
+          his.push("/stud_home");
+        }, 1200);
+      }
+    } else if (state.auth.isAuthenticated && state.auth.userType == "Faculty") {
+      return his.push("/fac_home");
+    }
+  }, [state]);
 
   return (
     <>

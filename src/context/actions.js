@@ -1,6 +1,8 @@
 import { loginUser, postExamForm } from "../api/api";
 import Types from "./types";
 import axios from "axios";
+import { ToastifyDanger } from "../components/Toast/Toastify";
+
 // const fetchDataAction = async (dispatch) => {
 //   const data = await fetch('https://api.tvmaze.com/singlesearch/shows?q=rick-&-morty&embed=episodes');
 //   const dataJSON = await data.json();
@@ -26,6 +28,7 @@ export const testAction = (state, dispatch) => {
 };
 
 export const login = async (user, dispatch) => {
+  console.log("api will be called");
   let userData = await axios
     .post("http://localhost:2000/api/login", user)
     .then((res) => {
@@ -43,30 +46,27 @@ export const login = async (user, dispatch) => {
   // token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXV
   //  }
 
-  // call api here! and pass response as payload
-
   if (userData && userData.faculty) {
-    console.log("checcking login fac ");
     return dispatch({
       type: Types.LOGIN_FACULTY,
       payload: userData,
     });
   } else if (userData && userData.student) {
-    console.log("checcking login student");
     return dispatch({
       type: Types.LOGIN_STUDENT,
       payload: userData,
     });
   } else {
-    console.log("login fail");
+    ToastifyDanger("Authentication Fail");
     return dispatch({
       type: Types.LOGIN_FAILED,
     });
   }
 };
 
-export const logout = async () => {
-  return {
+export const logout = (dispatch) => {
+  console.log("logout");
+  return dispatch({
     type: Types.LOGOUT,
-  };
+  });
 };

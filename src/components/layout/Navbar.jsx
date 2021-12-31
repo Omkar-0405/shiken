@@ -17,7 +17,21 @@ function Navbar(props) {
   const showSidebar = () => {
     setSidebar(!sidebar);
   };
-  const { state } = useContext(Context);
+  const { state, dispatch } = useContext(Context);
+  const [flag, setFlag] = useState(false);
+  const logoutUser = () => {
+    logout(dispatch);
+    setFlag(!flag);
+    console.log("state", state);
+    // his.push("/");
+  };
+  React.useEffect(() => {
+    console.log("use effect ", state);
+    if (state?.auth?.isAuthenticated == false) {
+      his.push("/");
+    }
+  }, [flag]);
+  // need optimization is this rerendering
   return (
     <IdleUser>
       <div className="layout">
@@ -42,15 +56,7 @@ function Navbar(props) {
                 <div>
                   <Link id="menu">
                     {/* <div id="icon" >{val.icon}</div> */}
-                    <div
-                      id="title"
-                      onClick={() => {
-                        logout().then(() => {
-                          // return his.push("/");
-                          console.log("state after logout", state);
-                        });
-                      }}
-                    >
+                    <div id="title" onClick={logoutUser}>
                       {MenuItem[0].title}
                     </div>
                   </Link>

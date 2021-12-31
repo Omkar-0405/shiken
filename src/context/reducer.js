@@ -77,9 +77,8 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         auth: {
-          ...state.auth,
-          isAuthenticated: action?.payload?.token,
-          // Boolean(action?.payload?.token) ?? false,
+          // ...state.auth,
+          isAuthenticated: Boolean(action?.payload?.token),
           userType: action?.payload?.student?.Role ?? null,
           token: action?.payload?.token,
         },
@@ -99,16 +98,8 @@ export const reducer = (state = initialState, action) => {
       };
 
     case Types.LOGOUT:
-      // localStorage.clear();
-      return {
-        ...state,
-        auth: {
-          ...state.auth,
-          isAuthenticated: false,
-          userType: "student",
-          token: null,
-        },
-      };
+      localStorage.clear();
+      return initialState;
     case Types.SET_USER:
       return {
         ...state,
