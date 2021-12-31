@@ -27,7 +27,8 @@ const StudentForm = (props) => {
 
     login(auth, dispatch)
       .then(() => {
-        if (state?.auth?.isAuthenticated) {
+        console.log("chomakar ", state.auth.isAuthenticated);
+        if (state.auth.isAuthenticated) {
           console.log("original token :", state.auth.token);
           let encryptedToken = EncryptStringData(state.auth.token);
 

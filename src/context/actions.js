@@ -44,26 +44,28 @@ export const login = async (user, dispatch) => {
   //  }
 
   // call api here! and pass response as payload
+
   if (userData && userData.faculty) {
+    console.log("checcking login fac ");
     return dispatch({
       type: Types.LOGIN_FACULTY,
       payload: userData,
     });
   } else if (userData && userData.student) {
+    console.log("checcking login student");
     return dispatch({
       type: Types.LOGIN_STUDENT,
       payload: userData,
     });
   } else {
+    console.log("login fail");
     return dispatch({
       type: Types.LOGIN_FAILED,
     });
   }
-
-  // else call another type in catch i.e LOGIN_FAIL
 };
 
-export const logout = () => {
+export const logout = async () => {
   return {
     type: Types.LOGOUT,
   };

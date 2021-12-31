@@ -25,6 +25,7 @@ export const initialState = {
     // createdAt: "2021-09-23T07:07:23.000Z"
     // id: 124
     // updatedAt: "2021-09-23T07:07:23.000Z"
+    //
     // Student res-
     // Address: "D-505 PANCHAVATI CHS ,SEC -5 ,GHANSOLI, NAVI MUMBAI-400701"
     // Branch: "comps"
@@ -77,7 +78,8 @@ export const reducer = (state = initialState, action) => {
         ...state,
         auth: {
           ...state.auth,
-          isAuthenticated: Boolean(action?.payload?.token) ?? false,
+          isAuthenticated: action?.payload?.token,
+          // Boolean(action?.payload?.token) ?? false,
           userType: action?.payload?.student?.Role ?? null,
           token: action?.payload?.token,
         },
@@ -97,7 +99,7 @@ export const reducer = (state = initialState, action) => {
       };
 
     case Types.LOGOUT:
-      localStorage.clear();
+      // localStorage.clear();
       return {
         ...state,
         auth: {

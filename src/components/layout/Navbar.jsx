@@ -45,8 +45,10 @@ function Navbar(props) {
                     <div
                       id="title"
                       onClick={() => {
-                        logout();
-                        return his.push("/");
+                        logout().then(() => {
+                          // return his.push("/");
+                          console.log("state after logout", state);
+                        });
                       }}
                     >
                       {MenuItem[0].title}
