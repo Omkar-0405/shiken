@@ -31,22 +31,35 @@ const FacultyForm = (props) => {
     setPassword("");
   };
 
+  // React.useEffect(() => {
+  //   if (state?.auth?.isAuthenticated && state?.auth?.userType == "Faculty") {
+  //     let encryptedToken = EncryptStringData(state.auth.token);
+  //     localStorage.setItem("faculty_token", encryptedToken);
+  //     localStorage.setItem("Role", state.auth.userType);
+  //     ToastifySuccess("Login Successfull");
+  //     return setTimeout(() => {
+  //       his.push("/fac_home");
+  //     }, 1200);
+  //   } else if (
+  //     state?.auth?.isAuthenticated &&
+  //     state?.auth?.userType == "student"
+  //   ) {
+  //     return his.push("/stud_home");
+  //   }
+  // }, [state]);
+
   React.useEffect(() => {
-    if (state?.auth?.isAuthenticated && state?.auth?.userType == "Faculty") {
-      let encryptedToken = EncryptStringData(state.auth.token);
-      localStorage.setItem("faculty_token", encryptedToken);
-      localStorage.setItem("Role", state.auth.userType);
+    if (state.auth.isAuthenticated && state.auth.userType == "Faculty") {
+      console.log("state after login", state);
       ToastifySuccess("Login Successfull");
-      return setTimeout(() => {
-        his.push("/fac_home");
-      }, 1200);
-    } else if (
-      state?.auth?.isAuthenticated &&
-      state?.auth?.userType == "student"
-    ) {
-      return his.push("/stud_home");
-    }
+        return setTimeout(() => {
+          his.push("/fac_home");
+        }, 1200);
+    } 
+    else return his.push('/')
   }, [state]);
+
+
   return (
     <>
       <form action="" onSubmit={submitHandler}>

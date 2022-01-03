@@ -5,6 +5,7 @@ import Alerts from "../../../components/alert";
 // import Tablee from '../../components/verifiedTable';
 import "./Home.css";
 import FileDownloader from "../../../components/FileDownloader";
+import { Context } from "../../../context/context";
 
 // import { Store } from '../../../context/context';
 import Illustration from "../../../assets/Illustration";
@@ -16,20 +17,13 @@ import Illustration from "../../../assets/Illustration";
  **/
 
 const Home = (props) => {
-  const getLocalToken = () => {
-    let token = localStorage.getItem("student_token");
-
-    if (token) {
-      return token;
-    }
-  };
-
-  if (getLocalToken()) {
+  const { state, dispatch } = useContext(Context);
+  
     return (
       <>
         <Layout>
           <div className="box">
-            <h1 className="mt-1">Welcome Student </h1>
+            <h1 className="mt-1">Welcome {state?.auth?.First_Name} </h1>
             <h2 style={{ color: "#9b0909" }}>Updates!</h2>
             <hr />
             <Alerts
@@ -59,8 +53,7 @@ const Home = (props) => {
           </div>
         </Layout>
       </>
-    );
-  } else return <Illustration />;
-};
+    )
+}
 
 export default Home;

@@ -18,19 +18,23 @@ function Navbar(props) {
     setSidebar(!sidebar);
   };
   const { state, dispatch } = useContext(Context);
-  const [flag, setFlag] = useState(false);
-  const logoutUser = () => {
-    logout(dispatch);
-    setFlag(!flag);
-    console.log("state", state);
-    // his.push("/");
+  // const [flag, setFlag] = useState(false);
+
+ 
+
+  const logoutUser = async() => {
+    await logout(dispatch)
+    his.push("/");
+    console.log("state", state)
   };
-  React.useEffect(() => {
-    console.log("use effect ", state);
-    if (state?.auth?.isAuthenticated == false) {
-      his.push("/");
-    }
-  }, [flag]);
+
+  // React.useEffect(() => {
+  //   console.log("use effect ", state);
+  //   if (state?.auth?.isAuthenticated === false) {
+  //     his.push("/");
+  //   }
+  // }, [flag]);
+
   // need optimization is this rerendering
   return (
     <IdleUser>
@@ -51,6 +55,7 @@ function Navbar(props) {
               <li id="name">
                 <FaUserAlt /> <img src="pp.jpg" alt="" />
                 <span>{state?.user?.First_name} </span>
+                <span>{state?.user?.First_Name} </span>
               </li>
               <li className="menu">
                 <div>

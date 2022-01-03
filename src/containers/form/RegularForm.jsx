@@ -22,6 +22,8 @@ export default function Veriform() {
     Elective: Electives[0],
   });
 
+  
+
   function handleChange(e) {
     const { value, name } = e.target;
     setStudent((prevValue) => ({ ...prevValue, [name]: value }));

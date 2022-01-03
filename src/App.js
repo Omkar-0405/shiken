@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom"
 import './App.css';
 
 import LoginForm from "./containers/login/LoginForm";
@@ -7,14 +7,16 @@ import ExamForm from "./pages/ExamForm";
 import ViewAllStudents from "./pages/ViewAllStudentsPage";
 import StudHome from "./containers/home/StudentHome/Home";
 import FacHome from "./containers/home/FacultyHome/FacHome";
-import StudProtected from "./routers/ProtectedRoutes/StudProtected";
 import 'react-toastify/dist/ReactToastify.css';
-import AdminProtected from "./routers/ProtectedRoutes/AdminProtected";
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 
 import { GenerateHallTicket } from './pages/GenerateHallTicket/index'
 import { UploadCsv } from './pages/UploadCsv/index'
 import AddSubj from "./containers/AddStudentSubj/AddSubj";
+import ProtectedRoutes from "./ProtectedRoutes";
+
+import { Context } from './context/context'
+import Illustration from "./assets/Illustration";
 
 
 
@@ -26,6 +28,7 @@ export const DataToken = createContext();
 
 function App() {
 
+  const {state, dispatch} = useContext(Context)
 
   return (
     <div className="App">
@@ -33,26 +36,27 @@ function App() {
       <DataToken.Provider>
         <Router>
           <Switch>
-
-            {/* public route */}
+          {/* public route */}
             <Route exact path="/" ><LoginForm /></Route>
+            <Route path="/404error" > < Illustration /></Route>
+          {/* Admin routes*/}
+          
+                <ProtectedRoutes strict path="/form-status" userType={state?.auth?.userType} isAuth={state?.auth?.isAuthenticated} component={ViewAllStudents}  />
+                <ProtectedRoutes strict path="/fac_home" userType={state?.auth?.userType} isAuth={state?.auth?.isAuthenticated} component={FacHome} />                
+                <ProtectedRoutes strict path="/hall-ticket" userType={state?.auth?.userType} isAuth={state?.auth?.isAuthenticated} component={GenerateHallTicket} />
+                <ProtectedRoutes strict path="/upload-csv" userType={state?.auth?.userType} isAuth={state?.auth?.isAuthenticated} component={UploadCsv}  />
+                <ProtectedRoutes strict path="/addsubj" userType={state?.auth?.userType} isAuth={state?.auth?.isAuthenticated} component={AddSubj} />                
+                <ProtectedRoutes exact path="/student/:slug" userType={state?.auth?.userType} isAuth={state?.auth?.isAuthenticated} component={ViewStudentPage} />
+          
+          {/* Student Routes*/}
+                <ProtectedRoutes strict path="/stud_home" userType={state?.auth?.userType} isAuth={state?.auth?.isAuthenticated} component={StudHome}  />
+                <ProtectedRoutes strict path="/form" userType={state?.auth?.userType} isAuth={state?.auth?.isAuthenticated} component={ExamForm} />                
+                <ProtectedRoutes exact path="/details" userType={state?.auth?.userType} isAuth={state?.auth?.isAuthenticated} component={ViewStudentPage} />
 
-            {/* routes for admin only*/}
-            <Route path="/form-status"> <AdminProtected>  <ViewAllStudents /> </AdminProtected></Route>
-            <Route path="/fac_home">    <AdminProtected>  <FacHome />         </AdminProtected></Route>
-            <Route path="/hall-ticket"> <AdminProtected>  <GenerateHallTicket/> </AdminProtected></Route>
-            <Route path="/upload-csv">  <AdminProtected>  <UploadCsv />         </AdminProtected></Route>
-            <Route path="/addsubj">     <AdminProtected>  <AddSubj />           </AdminProtected></Route>
-            <Route path="/student/:slug" >  <ViewStudentPage /> </Route>
-
-
-          {/* routes for verified students only*/}
-          <Route path="/stud_home" ><StudProtected><StudHome /></StudProtected></Route>
-          <Route path="/form"  > <StudProtected><ExamForm /></StudProtected></Route>
-          <Route exact path="/details"  > <StudProtected><ViewStudentPage /></StudProtected></Route>
-
-        </Switch>
-      </Router>
+          {/* Error Page       */}
+                <Redirect to="404error"/>
+          </Switch>
+        </Router>
     </DataToken.Provider>
     </div >
   );

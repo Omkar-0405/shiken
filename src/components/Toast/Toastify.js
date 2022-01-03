@@ -18,8 +18,8 @@ export const ToastifySuccess = ( msg ) => {
     
 }
 
-export const ToastifyDanger = (err ) => {
-        toast.warn( <div>{err}</div> , {
+export const ToastifyDanger = ( msg ) => {
+        toast.warn( <div>{msg}</div> , {
             position: "top-center",
             autoClose: 5000,
             hideProgressBar: false,
