@@ -47,6 +47,7 @@ export const initialState = {
     // updatedAt:
   },
   examform: {
+    Form_Status: 0, // 0 - not filled 1- in verification 2- can download hallticket
     // verifaction status and other data
   },
   studentList: [],
@@ -55,8 +56,6 @@ export const initialState = {
 };
 
 export const reducer = (state = initialState, action) => {
-
-
   switch (action.type) {
     case "TEST":
       return {

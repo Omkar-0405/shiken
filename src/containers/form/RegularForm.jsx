@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { Row, Col, Form, Button } from "react-bootstrap";
 import { ToastContainer } from "react-toastify";
-import { postExamForm } from "../../api/api";
+//import { postExamForm } from "../../context/actions";
 import "./form.css";
 
 let Electives = ["IP", "ADBMS", "EL"];
-const baseURL = "http://localhost:2000/api";
 
 export default function Veriform() {
   const [student, setStudent] = useState({
@@ -22,8 +21,6 @@ export default function Veriform() {
     Elective: Electives[0],
   });
 
-  
-
   function handleChange(e) {
     const { value, name } = e.target;
     setStudent((prevValue) => ({ ...prevValue, [name]: value }));
@@ -31,7 +28,7 @@ export default function Veriform() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    postExamForm(baseURL + `/examForm/submit`, student);
+    //  postExamForm(student);
     console.log(student);
   };
 
@@ -150,7 +147,7 @@ export default function Veriform() {
                 Year:
               </Form.Label>
               <Col lg={4} sm={12}>
-                <Form.Control
+                <Form.Select
                   type="text"
                   placeholder="FE/SE/TE"
                   name="Year"

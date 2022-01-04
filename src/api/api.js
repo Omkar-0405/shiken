@@ -6,20 +6,36 @@ let headers = {
 };
 
 export const loginUser = async (data) => {
-  const response = await axios.post(`${baseURL}/login`, data);
+  await axios
+    .post(`${baseURL}/login`, data)
+    .then((res) => {
+      return res;
+    })
+    .catch((error) => {
+      console.log(error);
+      return null;
+    });
 };
 
-export async function postExamForm(URL, student) {
-  axios.post(URL, student).then(
-    (response) => {
-      console.log(response);
-      ToastifySuccess("Response Submitted");
-    },
-    (err) => {
-      console.log(err);
-      ToastifyDanger("Unsuccessfull");
-    }
-  );
+export async function postExamFormApi(student) {
+  axios
+    .post(
+      `${baseURL}/examForm/submit`,
+      student
+      // pass headers
+    )
+    .then(
+      (response) => {
+        console.log("form submit res", response);
+        ToastifySuccess("Response Submitted");
+        return response;
+      },
+      (err) => {
+        console.log(err);
+        ToastifyDanger("Unsuccessfull, Try Again");
+        return null;
+      }
+    );
 }
 
 export async function AddSubjApi(URL, AddSubj) {
