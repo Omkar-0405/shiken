@@ -15,7 +15,7 @@ const FacHome = (props) => {
       <Layout>
         <div>
           <div className="box">
-            <h1 className="mt-1">Welcome {state?.auth?.First_Name} </h1>
+            <h1 className="mt-1">Welcome {state?.user?.First_name} </h1>
             <h2 style={{ color: "#9b0909" }}>Updates!</h2>
             <hr />
             <Alerts
