@@ -4,14 +4,13 @@ const Types = {
   LOGIN_FAILED: "LOGIN_FAILED",
   LOGOUT: "LOGOUT",
 
+  POST_EXAM_FORM_SUCESS: "POST_EXAM_FORM_SUCESS",
+  POST_EXAM_FORM_FAIL: "POST_EXAM_FORM_FAIL",
+  GET_HALL_TICKET_STATUS: "GET_HALL_TICKET_STATUS",
   SET_USER: "SET_USER",
 
   VERIFY: "VERIFY",
   VERIFY_ALL: "VERIFY_ALL",
 };
-
-// export const verify ={
-
-// }
 
 export default Types;

@@ -1,26 +1,34 @@
+import axios from "axios";
 import React, { useState } from "react";
+import { useContext } from "react";
 import { Row, Col, Form, Button } from "react-bootstrap";
 import { ToastContainer } from "react-toastify";
-import { postExamForm } from "../../api/api";
+import { baseURL, submitExamForm } from "../../context/actions";
+import { Context } from "../../context/context";
 import "./form.css";
-
 let Electives = ["IP", "ADBMS", "EL"];
-const baseURL = "http://localhost:2000/api";
 
 export default function Veriform() {
+  const { state, dispatch } = useContext(Context);
+  const [electiveList, setElectiveList] = useState([]);
+
   const [student, setStudent] = useState({
-    Email: "",
-    First_Name: "",
-    Father_Name: "",
-    Mother_Name: "",
-    Last_Name: "",
-    Mobile_No: "",
+    Email: state.user.Email ?? "",
+    First_Name: state?.user.First_Name ?? "",
+    Father_Name: state?.user.Father_Name ?? "",
+    Mother_Name: state?.user.Mother_Name ?? "",
+    Last_Name: state?.user.Last_Name ?? "",
+    Mobile_No: state?.user.Mobile_No ?? "",
     Year: "",
-    Department: "",
-    Roll_No: "",
+    Department: state?.user.Branch ?? "",
+    Roll_No: state?.user.Roll_No ?? "",
     Sem: "",
     Elective: Electives[0],
   });
+
+  const getElectives = async () => {
+    let electives = await axios.get(`${baseURL}/getElectives`);
+  };
 
   function handleChange(e) {
     const { value, name } = e.target;
@@ -29,7 +37,7 @@ export default function Veriform() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    postExamForm(baseURL + `/examForm/submit`, student);
+    submitExamForm(student, dispatch);
     console.log(student);
   };
 
