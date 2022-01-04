@@ -1,20 +1,10 @@
-import { loginUser, postExamForm } from "../api/api";
+import { loginUser, postExamFormApi } from "../api/api";
 import Types from "./types";
 import axios from "axios";
 import { ToastifyDanger } from "../components/Toast/Toastify";
 
-// const fetchDataAction = async (dispatch) => {
-//   const data = await fetch('https://api.tvmaze.com/singlesearch/shows?q=rick-&-morty&embed=episodes');
-//   const dataJSON = await data.json();
-//   return dispatch({
-//     type: 'FETCH_DATA',
-//     payload: dataJSON._embedded.episodes
-//   });
-// };
-
 export const testAction = (state, dispatch) => {
   console.log("state in action ", state);
-
   // call api here if needed
   return dispatch({
     type: "TEST",
@@ -45,7 +35,6 @@ export const login = async (user, dispatch) => {
   // message: "Authentication Successful"
   // token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXV
   //  }
-
   if (userData && userData.faculty) {
     return dispatch({
       type: Types.LOGIN_FACULTY,
@@ -69,4 +58,9 @@ export const logout = (dispatch) => {
   return dispatch({
     type: Types.LOGOUT,
   });
+};
+
+// Exam form actions
+export const postExamForm = (student) => {
+  const res = postExamFormApi(student);
 };
