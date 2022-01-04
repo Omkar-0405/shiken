@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ToastifyDanger, ToastifySuccess } from "../components/Toast/Toastify";
-const baseURL = "http://localhost:2000/api/";
+const baseURL = "http://localhost:2000/api";
 let headers = {
   "Content-Type": "application/json",
 };
@@ -18,7 +18,7 @@ export const loginUser = async (data) => {
 };
 
 export async function postExamFormApi(student) {
-  axios
+  await axios
     .post(
       `${baseURL}/examForm/submit`,
       student

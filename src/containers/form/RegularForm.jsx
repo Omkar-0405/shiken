@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Row, Col, Form, Button } from "react-bootstrap";
 import { ToastContainer } from "react-toastify";
-//import { postExamForm } from "../../context/actions";
+import { postExamForm } from "../../context/actions";
 import "./form.css";
 
 let Electives = ["IP", "ADBMS", "EL"];
 
-export default function Veriform() {
+const Veriform = () => {
   const [student, setStudent] = useState({
     Email: "",
     First_Name: "",
@@ -28,8 +28,8 @@ export default function Veriform() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //  postExamForm(student);
-    console.log(student);
+    postExamForm(student);
+    // console.log(student);
   };
 
   return (
@@ -236,6 +236,8 @@ export default function Veriform() {
     </div>
   );
 }
+
+export default Veriform;
 
 // import { useState } from "react";
 // import { Row, Col, Form, Button } from "react-bootstrap";

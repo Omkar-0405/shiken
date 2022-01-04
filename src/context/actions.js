@@ -63,4 +63,5 @@ export const logout = (dispatch) => {
 // Exam form actions
 export const postExamForm = (student) => {
   const res = postExamFormApi(student);
+  return res;
 };

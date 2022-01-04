@@ -1,6 +1,7 @@
 import React from 'react'
 import Layout from '../../components/layout/Navbar'
-import RegularForm from '../../containers/form/RegularForm'
+import Veriform from '../../containers/form/RegularForm'
+// import RegularForm from '../../containers/form/RegularForm'
 
 /**
 * @author
@@ -12,7 +13,8 @@ const ExamForm = (props) => {
     return (
         <div>
             <Layout>
-                <RegularForm student={{user:"from context"}} />
+                {/* <RegularForm student={{user:"from context"}} /> */}
+                <Veriform student={{user:"from context"}} />
             </Layout>
 
         </div>
