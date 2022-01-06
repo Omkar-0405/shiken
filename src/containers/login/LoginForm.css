@@ -1,12 +1,10 @@
-
 .login-form {
-   
   position: relative;
   min-height: 100vh;
-  height: auto;
+  height: 100vh;
   z-index: 0;
   background: url("https://png.pngtree.com/thumb_back/fw800/back_our/20190625/ourmid/pngtree-minimalistic-geometrical-atmosphere-flat-business-ppt-background-image_260528.jpg");
-  
+
   background-repeat: no-repeat;
   background-size: cover;
   padding: 40px;

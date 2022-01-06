@@ -16,15 +16,7 @@ import Illustration from "../../../assets/Illustration";
  **/
 
 const Home = (props) => {
-  const getLocalToken = () => {
-    let token = localStorage.getItem("student_token");
-
-    if (token) {
-      return token;
-    }
-  };
-
-  if (getLocalToken()) {
+  
     return (
       <>
         <Layout>
@@ -60,7 +52,7 @@ const Home = (props) => {
         </Layout>
       </>
     );
-  } else return <Illustration />;
+ 
 };
 
 export default Home;
