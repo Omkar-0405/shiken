@@ -47,7 +47,29 @@ export const initialState = {
     // updatedAt:
   },
   examform: {
+    formStatus: 0, // 0 - null , 1- Awaiting for Approval , 2 - verified
+    statusMessage: null, // "Awaiting for Approval"
+    Seat_No: null,
+
     // verifaction status and other data
+    // res after submit=
+    //  data:
+    // Department: " computer "
+    // Elective: "IP"                         <---
+    // Email: "krushna.dahake.01@gmail.com"
+    // Father_Name: "Krushna"
+    // First_Name: "Krushna"
+    // Form_Status: "Awaiting for Approval"  <---
+    // Last_Name: "Krushna"
+    // Mobile_No: "09579103478"
+    // Mother_Name: "Krushna"
+    // Roll_No: "12"
+    // Seat_No: null                        <---
+    // Sem: "1"
+    // Year: "TE"
+    // createdAt: "2022-01-04T18:16:31.211Z"
+    // id: 3
+    // updatedAt: "2022-01-04T18:16:31.21
   },
   studentList: [],
   verifiedList: [], //for faculty to send verified list
@@ -104,6 +126,24 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.payload.user,
+      };
+    case Types.POST_EXAM_FORM_SUCESS:
+      return {
+        ...state,
+        examform: {
+          ...state.examform,
+          formStatus: action.payload?.formStatus, // 0 - null , 1- Awaiting for Approval , 2 - verified
+          statusMessage: action.payload?.statusMessage,
+        },
+      };
+    case Types.POST_EXAM_FORM_FAIL:
+      return {
+        ...state,
+        examform: {
+          ...state.examform,
+          Form_Status: null, // "Awaiting for Approval"  // msg
+          Seat_No: null,
+        },
       };
     case Types.VERIFY:
       return {
