@@ -3,18 +3,9 @@ import Types from "./types";
 import axios from "axios";
 import { ToastifyDanger, ToastifySuccess } from "../components/Toast/Toastify";
 export const baseURL = "http://localhost:2000/api";
-// const fetchDataAction = async (dispatch) => {
-//   const data = await fetch('https://api.tvmaze.com/singlesearch/shows?q=rick-&-morty&embed=episodes');
-//   const dataJSON = await data.json();
-//   return dispatch({
-//     type: 'FETCH_DATA',
-//     payload: dataJSON._embedded.episodes
-//   });
-// };
 
 export const testAction = (state, dispatch) => {
   console.log("state in action ", state);
-
   // call api here if needed
   return dispatch({
     type: "TEST",
@@ -27,6 +18,7 @@ export const testAction = (state, dispatch) => {
   });
 };
 
+// Auth Actions  ---- common for both
 export const login = async (user, dispatch) => {
   console.log("api will be called");
   let userData = await axios
@@ -64,6 +56,14 @@ export const login = async (user, dispatch) => {
   }
 };
 
+export const logout = (dispatch) => {
+  console.log("logout");
+  return dispatch({
+    type: Types.LOGOUT,
+  });
+};
+
+//Exam Form Actions ---- Student
 // export const getElectives = async () =>{
 
 // }
@@ -99,9 +99,23 @@ export const submitExamForm = async (student, dispatch) => {
   }
 };
 
-export const logout = (dispatch) => {
-  console.log("logout");
-  return dispatch({
-    type: Types.LOGOUT,
-  });
+// Filter action ---- Faculty
+export const applyFilter = (filter) => {
+  return {
+    type: Types.APPLY_FILTER,
+    payload: filter,
+  };
+};
+
+// Verification actions ---- Faculty
+
+export const getStudentsBySem = (state, dispatch) => {
+  let { filter } = state;
+  // let { semester, department } = filter;
+  console.log(filter, "in action");
+  // await axios.get();
+  return {
+    type: Types.GET_ALL_STUDENTS_BY_SEM,
+    payload: {},
+  };
 };

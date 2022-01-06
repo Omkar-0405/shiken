@@ -60,7 +60,7 @@ export const initialState = {
     // First_Name: "Krushna"
     // Form_Status: "Awaiting for Approval"  <---
     // Last_Name: "Krushna"
-    // Mobile_No: "09579103478"
+    // Mobile_No: "0000000000"
     // Mother_Name: "Krushna"
     // Roll_No: "12"
     // Seat_No: null                        <---
@@ -72,7 +72,12 @@ export const initialState = {
   },
   studentList: [],
   verifiedList: [], //for faculty to send verified list
-  filter: [], // for using it in all other compo for updating data!
+  filter: {
+    semester: null,
+    // 1/2/3.../8
+    department: null,
+    //CE/EXCT/IT/...
+  }, // for using it in all other compo for updating data!
 };
 
 export const reducer = (state = initialState, action) => {
@@ -121,10 +126,15 @@ export const reducer = (state = initialState, action) => {
     case Types.LOGOUT:
       localStorage.clear();
       return initialState;
-    case Types.SET_USER:
+
+    case Types.APPLY_FILTER:
       return {
         ...state,
-        user: action.payload.user,
+        filter: {
+          ...state.filter,
+          semester: action.payload?.semester ?? null,
+          department: action.payload?.department ?? null,
+        },
       };
     case Types.POST_EXAM_FORM_SUCESS:
       return {
@@ -143,6 +153,11 @@ export const reducer = (state = initialState, action) => {
           Form_Status: null, // "Awaiting for Approval"  // msg
           Seat_No: null,
         },
+      };
+    case Types.GET_ALL_STUDENTS_BY_SEM:
+      return {
+        ...state,
+        studentList: [...state.studentList, "abc"],
       };
     case Types.VERIFY:
       return {
