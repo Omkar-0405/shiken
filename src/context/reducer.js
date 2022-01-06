@@ -50,7 +50,6 @@ export const initialState = {
     formStatus: 0, // 0 - null , 1- Awaiting for Approval , 2 - verified
     statusMessage: null, // "Awaiting for Approval"
     Seat_No: null,
-
     // verifaction status and other data
     // res after submit=
     //  data:

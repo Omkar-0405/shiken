@@ -6,50 +6,45 @@ import { FaDownload } from "react-icons/fa";
 const files = [
   {
     name: "Hall Ticket",
-    
+
     // file:
     //   "https://images.unsplash.com/photo-1604263439201-171fb8c0fddc?rnd=" +
     //   Math.random(),
     // filename: "Hall Ticket.jpg",
-  }
+  },
 ];
 
-const FileDownloader = () => {
+const FileDownloader = (props) => {
+  //  let {Roll_No } =  props
   // const [downloadFile, downloaderComponentUI] = useFileDownloader();
 
   // const download = (file) => downloadFile(file);
 
-  const download  = () => {
-    axios.request({
+  const download = (Roll_No) => {
+    axios
+      .request({
+        url: `http://localhost:2000/api/hallTicket/?Roll_No=${Roll_No}`,
+        method: "GET",
+        responseType: "blob", //important
+      })
 
-      url : " http://localhost:2000/api/hallTicket/?Department=EXTC&Sem=5 ",
-      method: "GET" ,
-      responseType: 'blob', //important
-
-    })
-
-    .then(({ data }) => {
-
-      const downloadUrl = window.URL.createObjectURL(new Blob([data]));
-      const link = document.createElement('a');
-      link.href = downloadUrl;
-      link.setAttribute('download', 'file.pdf'); //any other extension
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-
-    })
-    .catch((err) => {
-        console.log(err)
-    })
-
-  }
-
+      .then(({ data }) => {
+        const downloadUrl = window.URL.createObjectURL(new Blob([data]));
+        const link = document.createElement("a");
+        link.href = downloadUrl;
+        link.setAttribute("download", "file.pdf"); //any other extension
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <>
       {/* <Header title="" /> */}
-
 
       <div className="row">
         <div className="col text-center">
@@ -59,14 +54,20 @@ const FileDownloader = () => {
               <div className="col" key={idx}>
                 <div className="card ">
                   <div className="card-body" key={idx}>
-                    <img className="card-img-top mb-3" alt="" src={file.thumb} />
+                    <img
+                      className="card-img-top mb-3"
+                      alt=""
+                      src={file.thumb}
+                    />
                     <h5 className="card-title">{file.name}</h5>
 
                     <div
                       className="btn btn-primary cursor-pointer text-white"
-                      onClick={download}
+                      onClick={() => {
+                        download(123);
+                      }}
                     >
-                      Download <FaDownload  />
+                      Download <FaDownload />
                     </div>
                   </div>
                 </div>
