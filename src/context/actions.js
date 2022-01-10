@@ -109,13 +109,101 @@ export const applyFilter = (filter) => {
 
 // Verification actions ---- Faculty
 
-export const getStudentsBySem = (state, dispatch) => {
+export const getStudentsBySem = async (state, dispatch) => {
   let { filter } = state;
-  // let { semester, department } = filter;
-  console.log(filter, "in action");
-  // await axios.get();
-  return {
-    type: Types.GET_ALL_STUDENTS_BY_SEM,
-    payload: {},
-  };
+  console.log("filter in action", filter);
+  let { department, semester } = filter;
+  if (department && semester) {
+    await axios
+      .get(
+        `${baseURL}/examForm/submitted-forms/verify?Department=${department}&Sem=${semester}`
+      )
+      .then(
+        (res) => {
+          // console.log("filterdata", res.data);
+          if (!Array.isArray(res.data)) {
+            let msg = res.data?.error?.Message;
+            console.log(`${msg}`);
+            ToastifyDanger(`No records to show`);
+            return;
+          }
+
+          let studentList = res.data;
+          console.log("studentList", studentList);
+          return dispatch({
+            type: Types.GET_ALL_STUDENTS,
+            payload: studentList,
+          });
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+  }
+};
+
+export const verifyByRoll = async (rollNo, state, dispatch) => {
+  await axios
+    .put(`${baseURL}/examForm/update-exam-forms`, {
+      Roll_No: `${rollNo}`,
+      Form_Status: "Approved",
+    })
+    .then((res) => {
+      // console.log(res);
+      // if(res.status ==)
+      let verifiedStudent = state.studentList.find(
+        (student) => student.Roll_No == rollNo
+      );
+      console.log(verifiedStudent);
+      return dispatch({
+        type: Types.VERIFY_BY_ROLL_NO,
+        payload: verifiedStudent,
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
+// 1st verify all route and then generate
+// hall ticket
+export const generateHallTicket = async ({ state, seqNo, dispatch }) => {
+  let verifiedList = state.studentList.filter(
+    (student) => student.Form_Status == "Approved"
+    // &&
+    // student.Department == state.filter.department &&
+    // student.semester == state.filter.semester
+    // cases for filter change
+  );
+  console.log("verified list", verifiedList);
+  verifiedList.length != 0
+    ? await axios
+        .post(`${baseURL}/examForm/forms-verified`, {
+          forms: verifiedList,
+          seat_no_seq: seqNo,
+        })
+        .then((res) => {
+          if (res.status == 200) {
+            ToastifySuccess("Forms verified! Generating Hall tickets...");
+            return getHallTicket(state.filter, dispatch);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    : ToastifyDanger("No verified students to generate hall ticket");
+};
+
+export const getHallTicket = async ({ department, semester }, dispatch) => {
+  // dispatch({
+  //   type: Types.GENERATE_HALL_TICKET_REQUEST,
+  //   // promise waiting toast
+  // });
+  await axios
+    .get(`${baseURL}/hallTicket?Department=${department}&Sem=${semester}`)
+    .then((res) => {
+      console.log(res, "sucess hallticket");
+      ToastifySuccess("Hall tickets generated!");
+      // dispatch({
+      //   type: Types.GENERATE_HALL_TICKET_SUCESS,
+      // });
+    });
 };

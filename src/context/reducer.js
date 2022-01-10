@@ -154,15 +154,20 @@ export const reducer = (state = initialState, action) => {
           Seat_No: null,
         },
       };
-    case Types.GET_ALL_STUDENTS_BY_SEM:
+    case Types.GET_ALL_STUDENTS:
       return {
         ...state,
-        studentList: [...state.studentList, "abc"],
+        studentList: [...action.payload],
       };
-    case Types.VERIFY:
+    case Types.VERIFY_BY_ROLL_NO:
       return {
         ...state,
-        //    user: {...user, verified: action.payload.user}
+        studentList: [
+          ...state.studentList.filter(
+            (student) => student.Roll_No !== action.payload.Roll_No
+          ),
+          { ...action.payload, Form_Status: "Approved" },
+        ],
       };
 
     case Types.VERIFY_ALL:
@@ -170,6 +175,10 @@ export const reducer = (state = initialState, action) => {
         ...state,
         // verifiedList :[...verifiedList, action.payload.user]
       };
+
+    case Types.GENERATE_HALL_TICKET_REQUEST:
+      return {};
+
     default:
       return state;
   }

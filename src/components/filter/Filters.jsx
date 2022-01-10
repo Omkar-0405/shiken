@@ -35,7 +35,7 @@ function Filter(props) {
     <div className="filter">
       <Container flex fluid className="mg-3">
         <hr />
-        <Form onSubmit={props.onLoad}>
+        <Form onSubmit={props.onLoadClick}>
           <Row>
             <Col lg="4">
               <Form.Group>
@@ -46,7 +46,7 @@ function Filter(props) {
                   value={department}
                   onChange={(e) => setDepartment(e.target.value)}
                 >
-                  <option disabled>Select Department</option>
+                  <option value={null}>Select Department</option>
                   <option value="CE">Computer</option>
                   <option value="IT">Information Technology</option>
                   <option value="EXTC">EXTC</option>
@@ -63,7 +63,7 @@ function Filter(props) {
                   value={semester}
                   onChange={(e) => setSemester(e.target.value)}
                 >
-                  <option disabled>Select Semester</option>
+                  <option value={null}>Select Semester</option>
                   <option value="1">I</option>
                   <option value="2">II</option>
                   <option value="3">III</option>
@@ -82,7 +82,7 @@ function Filter(props) {
                 name="Load"
                 icon={<FiSearch />}
                 style={{ marginTop: "2rem" }}
-                onClick={props.onLoad}
+                onClick={props.onLoadClick}
               >
                 Load <FiSearch />
               </Button>

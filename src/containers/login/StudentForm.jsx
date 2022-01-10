@@ -34,7 +34,7 @@ const StudentForm = (props) => {
   };
 
   React.useEffect(() => {
-    if (state.auth.isAuthenticated && state.auth.userType == "student") {
+    if (state?.auth?.isAuthenticated && state?.auth?.userType == "student") {
       console.log("state after login", state);
       if (state?.auth?.isAuthenticated) {
         console.log("original token :", state.auth.token);
