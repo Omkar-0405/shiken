@@ -1,37 +1,79 @@
-import { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Row, Col, Form, Button } from "react-bootstrap";
-import { Done, EditButton, VerificationButton } from "../../components/button/Button";
+import {
+  Done,
+  EditButton,
+  VerificationButton,
+} from "../../components/button/Button";
 import "./ViewForm.css";
+import { verifyByRoll } from "../../context/actions";
+import { Context } from "../../context/context";
+import { useHistory } from "react-router-dom";
+import {
+  ToastifyDanger,
+  ToastifySuccess,
+} from "../../components/Toast/Toastify";
+import { ToastContainer } from "react-toastify";
 
 export const ViewForm = (props) => {
-  const [disabled, setDisabled] = useState(true)
-  console.log("props", props.student)
-  let studentData
-  // check if props state is not empty 
+  const { state, dispatch } = useContext(Context);
+  const [disabled, setDisabled] = useState(true);
+  const [status, setStatus] = useState(false);
+  React.useEffect(() => {
+    if (status == true) {
+      let verifiedStudent = state?.studentList.find(
+        (student) => student?.Roll_No == props.student?.Roll_No
+      ); // found form data of student with roll no in props
+      verifiedStudent?.Form_Status == "Approved" // checking status in updated state
+        ? ToastifySuccess(`Succefully verified`)
+        : ToastifyDanger(`Couldn't verify, Try Again`);
+
+      console.log("real status after sucess", state.studentList);
+    }
+    // console.log("useeffect status", status);
+  }, [status]);
+  const history = useHistory();
+  // console.log("props", props);
+  let studentData;
   if (Object.keys(props.student).length === 0) {
     studentData = {
-      first_name: "",
-      last_name: "",
-      roll_no: "",
-      sr_no: 3,
-      status: true,
-    } //use user Object of istate 
+      Department: "",
+      Elective: "",
+      Email: "",
+      Father_Name: "",
+      First_Name: "",
+      Form_Status: "",
+      Last_Name: "",
+      Mobile_No: 0,
+      Mother_Name: "",
+      Roll_No: "",
+      Seat_No: 0,
+      Sem: 0,
+      Year: "",
+    };
+  } else {
+    studentData = props.student;
   }
-  else {
+  const EditBtn = () => {
+    setDisabled(!disabled);
+  };
 
-    studentData = props.student
-  }
-  const EditBtn = ( ) => {
-    setDisabled(!disabled)
-  }
+  const Verify = (rollNo) => {
+    rollNo
+      ? verifyByRoll(rollNo, state, dispatch).then(() => setStatus(true))
+      : ToastifyDanger("Can't Verify Empty");
 
-  const Verified = ( ) => {
-    setDisabled(!disabled)
-  }
+    // setDisabled(!disabled);
+  };
 
-  const DoneEditForm = ( ) => {
-    setDisabled(!disabled)
-  }
+  const DoneEditForm = () => {
+    setDisabled(!disabled);
+    // yet to call put api if edited
+    ToastifySuccess("Changes Saved");
+    return setTimeout(() => {
+      history.push("/form-status");
+    }, 2000);
+  };
 
   return (
     <div className="bg">
@@ -39,7 +81,7 @@ export const ViewForm = (props) => {
         <h2>
           <b>Verification </b>
         </h2>
-
+        <ToastContainer />
         <Form>
           <fieldset className="sec">
             <legend className="w-auto p-1">Students Details</legend>
@@ -53,8 +95,10 @@ export const ViewForm = (props) => {
                     Student Name:
                   </Form.Label>
                   <Col lg={12} sm={12}>
-                    <Form.Control type="text" placeholder="Student Name"
-                      value={`${studentData.first_name}  ${studentData.last_name} `}
+                    <Form.Control
+                      type="text"
+                      placeholder="Student Name"
+                      value={`${studentData.First_Name} ${studentData.Father_Name} ${studentData.Last_Name} `}
                     />
                   </Col>
                 </Row>
@@ -64,8 +108,10 @@ export const ViewForm = (props) => {
                     Roll No. :
                   </Form.Label>
                   <Col lg={12} sm={12}>
-                    <Form.Control type="text" placeholder="Roll no"
-                      value={studentData.roll_no}
+                    <Form.Control
+                      type="text"
+                      placeholder="Roll no"
+                      value={studentData.Roll_No}
                     />
                   </Col>
                 </Row>
@@ -75,7 +121,25 @@ export const ViewForm = (props) => {
                     Branch :
                   </Form.Label>
                   <Col lg={12} sm={12}>
-                    <Form.Control type="text" placeholder="Branch" disabled={disabled} />
+                    <Form.Control
+                      type="text"
+                      value={studentData.Department}
+                      placeholder="Branch"
+                      disabled={disabled}
+                    />
+                  </Col>
+                </Row>
+                <Row>
+                  <Form.Label column lg={4} sm={12}>
+                    Current Form Status
+                  </Form.Label>
+                  <Col lg={12} sm={12}>
+                    <Form.Control
+                      type="text"
+                      value={studentData.Form_Status}
+                      placeholder="Branch"
+                      disabled={disabled}
+                    />
                   </Col>
                 </Row>
               </Col>
@@ -90,7 +154,12 @@ export const ViewForm = (props) => {
                     Academic Year :
                   </Form.Label>
                   <Col lg={12} sm={12}>
-                    <Form.Control type="text" placeholder="Year" disabled={disabled} />
+                    <Form.Control
+                      type="text"
+                      value={studentData.Year}
+                      placeholder="Year"
+                      disabled={disabled}
+                    />
                   </Col>
                 </Row>
 
@@ -99,7 +168,12 @@ export const ViewForm = (props) => {
                     Semester :
                   </Form.Label>
                   <Col lg={12} sm={12}>
-                    <Form.Control type="text" placeholder="Sem" disabled={disabled} />
+                    <Form.Control
+                      type="text"
+                      value={studentData.Sem}
+                      placeholder="Sem"
+                      disabled={disabled}
+                    />
                   </Col>
                 </Row>
 
@@ -108,7 +182,12 @@ export const ViewForm = (props) => {
                     Email-ID :
                   </Form.Label>
                   <Col lg={12} sm={12}>
-                    <Form.Control type="text" placeholder="Email" disabled={disabled} />
+                    <Form.Control
+                      type="text"
+                      value={studentData.Email}
+                      placeholder="Email"
+                      disabled={disabled}
+                    />
                   </Col>
                 </Row>
 
@@ -117,23 +196,33 @@ export const ViewForm = (props) => {
                     Mobile number :
                   </Form.Label>
                   <Col lg={12} sm={12}>
-                    <Form.Control type="text" placeholder="Phone Number" disabled={disabled} />
+                    <Form.Control
+                      type="text"
+                      value={studentData.Mobile_No}
+                      placeholder="Phone Number"
+                      disabled={disabled}
+                    />
                   </Col>
                 </Row>
               </Col>
             </Row>
-            <div className="btn-sec" style={{ display: "flex", justifyContent: "right" }}>
+            <div
+              className="btn-sec"
+              style={{ display: "flex", justifyContent: "right" }}
+            >
               {disabled ? <EditButton click={EditBtn} /> : ""}
-              {disabled ? <VerificationButton click={Verified} /> : <Done click={DoneEditForm} />}
-
+              {disabled && status ? (
+                <VerificationButton click={() => Verify(studentData.Roll_No)} />
+              ) : (
+                <Done click={DoneEditForm} />
+              )}
             </div>
 
             {props.children}
             {/* for buttons */}
           </fieldset>
         </Form>
-
       </div>
     </div>
   );
-}
+};

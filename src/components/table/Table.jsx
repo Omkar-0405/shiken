@@ -19,8 +19,6 @@ export const StudentTable = () => {
     // alert(rollNo);
     verifyByRoll(rollNo, state, dispatch);
     setVerified(!isVerified);
-
-    // dispatch verify by roll no
   };
 
   // React.useEffect(() => {
@@ -28,7 +26,7 @@ export const StudentTable = () => {
   // }, [state]);
   const openDetails = (student) => {
     history.push({
-      pathname: `/student/${student.roll_no}`,
+      pathname: `/student/${student.Roll_No}`,
       state: { student },
     });
   };

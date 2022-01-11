@@ -143,18 +143,19 @@ export const getStudentsBySem = async (state, dispatch) => {
 };
 
 export const verifyByRoll = async (rollNo, state, dispatch) => {
+  console.log(`verifying ${rollNo}`);
   await axios
     .put(`${baseURL}/examForm/update-exam-forms`, {
       Roll_No: `${rollNo}`,
       Form_Status: "Approved",
     })
     .then((res) => {
-      // console.log(res);
+      console.log("verification res", res);
       // if(res.status ==)
       let verifiedStudent = state.studentList.find(
         (student) => student.Roll_No == rollNo
       );
-      console.log(verifiedStudent);
+      console.log("verified:", verifiedStudent);
       return dispatch({
         type: Types.VERIFY_BY_ROLL_NO,
         payload: verifiedStudent,

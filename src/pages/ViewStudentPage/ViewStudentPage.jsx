@@ -1,38 +1,36 @@
-import React from 'react'
-import Layout from '../../components/layout/Navbar'
-import { ViewForm } from '../../containers/viewForm/ViewForm'
+import React from "react";
+import Layout from "../../components/layout/Navbar";
+import { ViewForm } from "../../containers/viewForm/ViewForm";
 import { useLocation } from "react-router-dom";
 
 /**
-* @author
-* @function ViewStudent
-**/
+ * @author
+ * @function ViewStudent
+ **/
 
 const ViewStudentPage = (props) => {
-  const location = useLocation()
-  console.log("loc", location.state)
-  let student
+  const location = useLocation();
+  //  console.log("loc", location.state)
+  let student;
   if (location.state !== undefined) {
-    student = location.state.student
+    student = location.state.student;
+  } else {
+    student = {};
   }
-  else {
-    student = {}
-  }
-
 
   return (
     <>
       <Layout>
         {/* pass student obj as props and make editable student={student} */}
-        <ViewForm student={student} >
-          <div className="btn-sec" style={{ display: "flex", justifyContent: "right" }}>
-
-          </div>
+        <ViewForm student={student}>
+          <div
+            className="btn-sec"
+            style={{ display: "flex", justifyContent: "right" }}
+          ></div>
         </ViewForm>
       </Layout>
     </>
-  )
-}
+  );
+};
 
-
-export default ViewStudentPage
+export default ViewStudentPage;
