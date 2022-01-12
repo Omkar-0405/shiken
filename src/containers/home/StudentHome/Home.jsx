@@ -8,6 +8,7 @@ import FileDownloader from "../../../components/FileDownloader";
 
 // import { Store } from '../../../context/context';
 import Illustration from "../../../assets/Illustration";
+import { Context } from "../../../context/context";
 // import axios from 'axios';
 
 /**
@@ -16,43 +17,44 @@ import Illustration from "../../../assets/Illustration";
  **/
 
 const Home = (props) => {
-  
-    return (
-      <>
-        <Layout>
-          <div className="box">
-            <h1 className="mt-1">Welcome Student </h1>
-            <h2 style={{ color: "#9b0909" }}>Updates!</h2>
-            <hr />
-            <Alerts
-              variant="success"
-              title="Exam form is out!"
-              message=" Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco"
-            >
-              {/* <CustumButton variant="primary" name="Fill Form" />
-               */}
-            </Alerts>
+  const { state, dispatch } = useContext(Context);
+  return (
+    <>
+      <Layout>
+        <div className="box">
+          <h1 className="mt-1">
+            Welcome {state.user?.First_Name ?? "Student"}
+          </h1>
+          <h2 style={{ color: "#9b0909" }}>Updates!</h2>
+          <hr />
+          <Alerts
+            variant="success"
+            title="Exam form is out!"
+            message=" Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco"
+          >
+            {/* <CustumButton variant="primary" name="Fill Form" />
+             */}
+          </Alerts>
 
-            <Alerts
-              variant="danger"
-              title="Last 2 days to fill form"
-              message=" Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco"
-            />
-            <Alerts
+          <Alerts
+            variant="danger"
+            title="Last 2 days to fill form"
+            message=" Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco"
+          />
+          {/* <Alerts
               className="mb-5"
               variant="danger"
               title="Last 2 days to fill form"
               message=" Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco"
-            />
+            /> */}
 
-            <br />
-            <br />
-            <FileDownloader />
-          </div>
-        </Layout>
-      </>
-    );
- 
+          <br />
+          <br />
+          <FileDownloader />
+        </div>
+      </Layout>
+    </>
+  );
 };
 
 export default Home;

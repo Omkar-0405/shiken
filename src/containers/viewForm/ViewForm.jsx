@@ -18,20 +18,19 @@ import { ToastContainer } from "react-toastify";
 export const ViewForm = (props) => {
   const { state, dispatch } = useContext(Context);
   const [disabled, setDisabled] = useState(true);
-  const [status, setStatus] = useState(false);
+  const [isVerified, setVerified] = useState(false);
   React.useEffect(() => {
-    if (status == true) {
-      let verifiedStudent = state?.studentList.find(
+    if (isVerified == true) {
+      let verifiedStudent = state.studentList.find(
         (student) => student?.Roll_No == props.student?.Roll_No
-      ); // found form data of student with roll no in props
-      verifiedStudent?.Form_Status == "Approved" // checking status in updated state
-        ? ToastifySuccess(`Succefully verified`)
+      ); // to get data of student with roll no in props
+      console.log("verified student in state", verifiedStudent); // checking status in updated state
+      verifiedStudent?.Form_Status == "Approved"
+        ? DoneVerification()
         : ToastifyDanger(`Couldn't verify, Try Again`);
-
-      console.log("real status after sucess", state.studentList);
     }
-    // console.log("useeffect status", status);
-  }, [status]);
+    console.log("status of all after verification", state.studentList);
+  }, [isVerified]);
   const history = useHistory();
   // console.log("props", props);
   let studentData;
@@ -53,6 +52,9 @@ export const ViewForm = (props) => {
     };
   } else {
     studentData = props.student;
+    if (studentData?.Form_Status === "Approved") {
+      // setVerified(true);
+    }
   }
   const EditBtn = () => {
     setDisabled(!disabled);
@@ -60,7 +62,12 @@ export const ViewForm = (props) => {
 
   const Verify = (rollNo) => {
     rollNo
-      ? verifyByRoll(rollNo, state, dispatch).then(() => setStatus(true))
+      ? verifyByRoll(rollNo, state, dispatch)
+          .then(() => {
+            console.log("res after action", state);
+            setVerified(true);
+          })
+          .catch(() => setVerified(false))
       : ToastifyDanger("Can't Verify Empty");
 
     // setDisabled(!disabled);
@@ -70,6 +77,13 @@ export const ViewForm = (props) => {
     setDisabled(!disabled);
     // yet to call put api if edited
     ToastifySuccess("Changes Saved");
+    return setTimeout(() => {
+      history.push("/form-status");
+    }, 2000);
+  };
+  const DoneVerification = () => {
+    setVerified(true);
+    ToastifySuccess(`Succefully verified`);
     return setTimeout(() => {
       history.push("/form-status");
     }, 2000);
@@ -211,7 +225,7 @@ export const ViewForm = (props) => {
               style={{ display: "flex", justifyContent: "right" }}
             >
               {disabled ? <EditButton click={EditBtn} /> : ""}
-              {disabled && status ? (
+              {disabled && studentData?.Form_Status !== "Approved" ? (
                 <VerificationButton click={() => Verify(studentData.Roll_No)} />
               ) : (
                 <Done click={DoneEditForm} />
