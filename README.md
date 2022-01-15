@@ -1,4 +1,4 @@
-# shiken
+# Shiken-Exam Software
 
 ## Overview
 This repository (- exam or test in Japanese) is the frontend for all the modules of Exam software of RAIT.
