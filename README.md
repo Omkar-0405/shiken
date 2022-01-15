@@ -2,7 +2,7 @@
 
 ## Overview
 This repository (- exam or test in Japanese) is the frontend for all the modules of Exam software of RAIT.
-It repository represents the client side code consuming API Endpoints from https://github.com/Rosh9532/shiken for 
+It  represents the client side code consuming API Endpoints from https://github.com/Rosh9532/shiken for 
 building Exam software project.
 
 ## About
