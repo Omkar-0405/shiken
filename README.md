@@ -1,16 +1,23 @@
-# Getting Started with Create React App
+# shiken
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
+This repository (- exam or test in Japanese) is the frontend for all the modules of Exam software of RAIT.
+It repository represents the client side code consuming API Endpoints from https://github.com/Rosh9532/shiken for 
+building Exam software project.
 
-## Available Scripts
+## About
+- Examsoftware is a web-app aiming to automate various exam-related activites such as Hall- 
+  Ticket generation, MarkSheet Entry and it’s generation.  
 
-In the project directory, you can run:
 
-### `npm start`
+## Technologies
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- NodeJS
+- Reactjs
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
+## Installation
+To run the Project,perform the following actions:
+1. Type the command line-`git clone https://github.com/krish10k/shiken.git` in your Command Prompt
+2. After running above command, type -`npm install`
+3. Now,you are all set to run the project , type the command on your terminal-`npm start`
