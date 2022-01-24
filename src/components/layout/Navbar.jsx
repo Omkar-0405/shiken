@@ -10,6 +10,7 @@ import IdleUser from "../IdleUser/IdleUser";
 import { logout } from "../../context/actions";
 import { Context } from "../../context/context";
 import { FaUserAlt } from "react-icons/fa";
+import { DecryptObjectData } from "../../utils/Hash/Hash";
 
 function Navbar(props) {
   const [sidebar, setSidebar] = useState(true);
@@ -19,18 +20,17 @@ function Navbar(props) {
   };
   const { state, dispatch } = useContext(Context);
   const [flag, setFlag] = useState(false);
-  const logoutUser = () => {
+  const userData = DecryptObjectData(localStorage.getItem("DATA"));
+
+  const logoutUser = async () => {
     logout(dispatch);
-    setFlag(!flag);
-    console.log("state", state);
-    // his.push("/");
-  };
-  React.useEffect(() => {
-    console.log("use effect ", state);
-    if (state?.auth?.isAuthenticated == false) {
-      his.push("/");
+    if (!state.auth?.isAuthenticated) {
+      setFlag(!flag);
+      console.log("state", state);
+      return his.push("/");
     }
-  }, [flag]);
+  };
+
   // need optimization is this rerendering
   return (
     <IdleUser>
@@ -50,7 +50,11 @@ function Navbar(props) {
             <ul className="nav-right">
               <li id="name">
                 <FaUserAlt /> <img src="pp.jpg" alt="" />
-                <span>{state?.user?.First_name} </span>
+                <span>
+                  {userData?.student
+                    ? userData?.student?.First_Name
+                    : userData?.faculty?.First_Name}
+                </span>
               </li>
               <li className="menu">
                 <div>

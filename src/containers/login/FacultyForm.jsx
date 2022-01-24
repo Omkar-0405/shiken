@@ -7,15 +7,16 @@ import {
   ToastifyDanger,
   ToastifySuccess,
 } from "../../components/Toast/Toastify";
-import { login } from "../../context/actions";
+import { Login } from "../../context/actions";
 import { Context } from "../../context/context";
-import { EncryptStringData } from "../../utils/Hash/Hash";
+import { DecryptObjectData, EncryptStringData } from "../../utils/Hash/Hash";
 
 const FacultyForm = (props) => {
   const { state, dispatch } = useContext(Context);
   const [sdrn, setNumber] = useState("");
   const [password, setPassword] = useState("");
   const his = useHistory();
+  const userData = DecryptObjectData(localStorage.getItem("DATA"));
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -25,26 +26,29 @@ const FacultyForm = (props) => {
       usertype: "faculty",
     };
 
-    login(auth, dispatch);
+    Login(auth, dispatch);
 
     setNumber("");
     setPassword("");
   };
 
   React.useEffect(() => {
-    if (state?.auth?.isAuthenticated && state?.auth?.userType == "Faculty") {
-      let encryptedToken = EncryptStringData(state.auth.token);
-      localStorage.setItem("faculty_token", encryptedToken);
-      localStorage.setItem("Role", state.auth.userType);
+    // const userData = DecryptObjectData(localStorage.getItem("DATA"));
+
+    if (
+      // state?.auth?.isAuthenticated && state?.auth?.userType == "Faculty"
+      userData?.faculty &&
+      userData.message === "Authentication Successful"
+    ) {
+      // let encryptedToken = EncryptStringData(state.auth.token);
+      // localStorage.setItem("faculty_token", encryptedToken);
+      // localStorage.setItem("Role", state.auth.userType);
       ToastifySuccess("Login Successfull");
       return setTimeout(() => {
         his.push("/fac_home");
       }, 1200);
-    } else if (
-      state?.auth?.isAuthenticated &&
-      state?.auth?.userType == "student"
-    ) {
-      return his.push("/stud_home");
+    } else {
+      return his.push("/");
     }
   }, [state]);
   return (

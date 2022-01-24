@@ -1,65 +1,68 @@
-import React, { useState } from 'react'
-import { Button, Col, Form, Row } from 'react-bootstrap';
-import { ToastContainer } from 'react-toastify';
-import { AddSubjApi } from '../../api/api';
-import Navbar from '../../components/layout/Navbar'
-
-
+import React, { useState } from "react";
+import { Button, Col, Form, Row } from "react-bootstrap";
+import { ToastContainer } from "react-toastify";
+import { AddSubjApi } from "../../api/api";
+import Navbar from "../../components/layout/Navbar";
 
 const AddSubj = () => {
-    const baseURL = "http://localhost:2000/api/";
-    const [Add, setAdd] = useState({
-        
-        Department:" ",
-        Sem: [] ,
-        Subject_code:" ",
-        Subject_name:" ",
-        Subject_shortname:" ",
-        Year : [] ,
-        Elective:false,
-        
-      });
+  const baseURL = "http://localhost:2000/api/";
+  const [Elective, setElective] = useState(true);
+  const [Add, setAdd] = useState({
+    Department: " ",
+    Sem: [],
+    Subject_code: " ",
+    Subject_name: " ",
+    Subject_shortname: " ",
+    Year: [],
+    // Elective:false,
+  });
 
+  const radioButton = {
+    width: "30px",
+    color: "red",
+  };
 
-      function handleChange(e){
-        const{value, name}=e.target;
-        setAdd(prevValue=>({...prevValue,[name]:value}))
-        
-      }
-      
-      const handleSubmit = (e) => {
-    
-        e.preventDefault();
-        AddSubjApi(baseURL +`subject/addSubject`, Add )
-        console.log(Add)
+  function handleRadio(e) {
+    const { name } = e.target;
+    setElective(!Elective);
+    console.log(Elective);
+    setAdd((prevValue) => ({ ...prevValue, [name]: Elective }));
+  }
 
-      };
+  function handleChange(e) {
+    const { value, name } = e.target;
+    setAdd((prevValue) => ({ ...prevValue, [name]: value }));
+  }
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    AddSubjApi(baseURL + `subject/addSubject`, Add);
+    console.log(Add);
+  };
 
-
-    return (
-       <Navbar> 
-        <div className="bg">
+  return (
+    <Navbar>
+      <div className="bg">
         <div className="mbody">
           <h2>
             <b>Add Subject </b>
           </h2>
-  
+
           <Form onSubmit={handleSubmit}>
             <fieldset className="sec">
               {/* <legend className="w-auto p-1">
                 <b>Student Details</b>
               </legend> */}
               <br />
-  
+
               <Row>
                 <Form.Label column lg={2} sm={12}>
-                 Department:
+                  Department:
                 </Form.Label>
                 <Col lg={4} sm={12}>
                   <Form.Control
                     type="text"
-                    placeholder= " eg. CE, EXTC"
+                    placeholder=" eg. CE, EXTC"
                     name="Department"
                     value={Add.Department}
                     onChange={handleChange}
@@ -67,7 +70,7 @@ const AddSubj = () => {
                   />
                 </Col>
               </Row>
-  
+
               <Row>
                 <Form.Label column lg={2} sm={12}>
                   Sem:
@@ -75,7 +78,7 @@ const AddSubj = () => {
                 <Col lg={4} sm={12}>
                   <Form.Control
                     type="text"
-                    placeholder= "eg. 5 "
+                    placeholder="eg. 5 "
                     name="Sem"
                     value={Add.Sem}
                     onChange={handleChange}
@@ -83,10 +86,10 @@ const AddSubj = () => {
                   />
                 </Col>
               </Row>
-  
+
               <Row>
                 <Form.Label column lg={2} sm={12}>
-                 Subject code:
+                  Subject code:
                 </Form.Label>
                 <Col lg={4} sm={12}>
                   <Form.Control
@@ -99,15 +102,15 @@ const AddSubj = () => {
                   />
                 </Col>
               </Row>
-  
+
               <Row>
                 <Form.Label column lg={2} sm={12}>
-                Subject name:
+                  Subject name:
                 </Form.Label>
                 <Col lg={4} sm={12}>
                   <Form.Control
                     type="text"
-                    placeholder="Subject_name"
+                    placeholder="Subject name"
                     name="Subject_name"
                     value={Add.Subject_name}
                     onChange={handleChange}
@@ -115,15 +118,15 @@ const AddSubj = () => {
                   />
                 </Col>
               </Row>
-  
+
               <Row>
                 <Form.Label column lg={2} sm={12}>
-                Subject shortname:
+                  Subject shortname:
                 </Form.Label>
                 <Col lg={4} sm={12}>
                   <Form.Control
                     type="text"
-                    placeholder="Subject_shortname"
+                    placeholder="Subject shortname"
                     name="Subject_shortname"
                     value={Add.Subject_shortname}
                     onChange={handleChange}
@@ -131,7 +134,7 @@ const AddSubj = () => {
                   />
                 </Col>
               </Row>
-  
+
               <Row>
                 <Form.Label column lg={2} sm={12}>
                   Year:
@@ -147,34 +150,48 @@ const AddSubj = () => {
                   />
                 </Col>
               </Row>
-              
+
               <Row>
                 <Form.Label column lg={2} sm={12}>
-                Elective:
+                  Elective:
                 </Form.Label>
-                <Col lg={4} sm={12}>
-                  <Form.Control
+                <Col
+                  style={{ display: "flex", flexDirection: "row" }}
+                  lg={4}
+                  sm={12}
+                  className="mt-2"
+                >
+                  {/* <Form.Control
                     type="text"
                     placeholder="Elective"
                     name="Elective"
                     value={Add.Elective}
                     onChange={handleChange}
                     required
+                  /> */}
+                  <Form.Check
+                    type="switch"
+                    name="Elective"
+                    placeholder="Elective"
+                    defaultValue={false}
+                    onChange={handleRadio}
+                    id="custom-switch"
+                    style={radioButton}
                   />
+                  Yes
                 </Col>
               </Row>
-             
+
               <Button className="m-3" variant="danger" type="submit">
                 Submit
               </Button>
             </fieldset>
           </Form>
         </div>
-        
       </div>
-      <ToastContainer/>
-      </Navbar>  
-    )
-}
+      <ToastContainer />
+    </Navbar>
+  );
+};
 
-export default AddSubj
+export default AddSubj;

@@ -7,8 +7,8 @@ import "./Home.css";
 import FileDownloader from "../../../components/FileDownloader";
 
 // import { Store } from '../../../context/context';
-import Illustration from "../../../assets/Illustration";
 import { Context } from "../../../context/context";
+import { DecryptObjectData } from "../../../utils/Hash/Hash";
 // import axios from 'axios';
 
 /**
@@ -18,12 +18,15 @@ import { Context } from "../../../context/context";
 
 const Home = (props) => {
   const { state, dispatch } = useContext(Context);
+  const userData = DecryptObjectData(localStorage.getItem("DATA"));
+
   return (
     <>
       <Layout>
         <div className="box">
           <h1 className="mt-1">
-            Welcome {state.user?.First_Name ?? "Student"}
+            Welcome{" "}
+            {userData?.faculty?.First_Name ?? userData?.student?.First_Name}
           </h1>
           <h2 style={{ color: "#9b0909" }}>Updates!</h2>
           <hr />
@@ -52,6 +55,7 @@ const Home = (props) => {
           <br />
           <FileDownloader />
         </div>
+        )
       </Layout>
     </>
   );

@@ -1,30 +1,48 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useContext } from "react";
 import { Row, Col, Form, Button } from "react-bootstrap";
 import { ToastContainer } from "react-toastify";
 import { baseURL, submitExamForm } from "../../context/actions";
 import { Context } from "../../context/context";
+import { DecryptObjectData } from "../../utils/Hash/Hash";
 import "./form.css";
-let Electives = ["IP", "ADBMS", "EL"];
+
+let Electives_1 = ["IP", "ADBMS", "EL"];
+let Electives_2 = [
+  "Data Analytics",
+  "Communication Network",
+  "Natural Language Processing",
+];
+
+let Year = ["FE", "SE", "TE", "BE"];
 
 export default function Veriform() {
   const { state, dispatch } = useContext(Context);
   const [electiveList, setElectiveList] = useState([]);
 
+  const userData = DecryptObjectData(localStorage.getItem("DATA"));
+  console.log("form usdada", userData);
+
   const [student, setStudent] = useState({
-    Email: state.user.Email ?? "",
-    First_Name: state?.user.First_Name ?? "",
-    Father_Name: state?.user.Father_Name ?? "",
-    Mother_Name: state?.user.Mother_Name ?? "",
-    Last_Name: state?.user.Last_Name ?? "",
-    Mobile_No: state?.user.Mobile_No ?? "",
+    Email: userData?.student?.Email ?? "",
+    First_Name: userData?.student?.First_Name ?? "",
+    Father_Name: userData?.student?.Father_Name ?? "",
+    Mother_Name: userData?.student?.Mother_Name ?? "",
+    Last_Name: userData?.student?.Last_Name ?? "",
+    Mobile_No: userData?.student?.Mobile_No ?? "",
     Year: "",
-    Department: state?.user.Branch ?? "",
-    Roll_No: state?.user.Roll_No ?? "",
+    Department:
+      userData?.student?.Branch === "Comps" ? "CE" : userData?.student?.Branch,
+    Roll_No: userData?.student?.Roll_No ?? "",
     Sem: "",
-    Elective: Electives[0],
+    Elective: Electives_1[0],
+    ILO: Electives_2[0],
   });
+
+  useEffect(() => {
+    console.log(student.Last_Name);
+  }, [student]);
 
   const getElectives = async () => {
     let electives = await axios.get(`${baseURL}/getElectives`);
@@ -156,14 +174,27 @@ export default function Veriform() {
                 Year:
               </Form.Label>
               <Col lg={4} sm={12}>
-                <Form.Control
+                {/* <Form.Control
                   type="text"
-                  placeholder="FE/SE/TE"
+                  placeholder="FE/SE/TE/BE"
                   name="Year"
                   value={student.Year}
                   onChange={handleChange}
                   required
-                />
+                /> */}
+                <select
+                  className="form-select"
+                  aria-label="Default select example"
+                  name="Year"
+                  onChange={handleChange}
+                  required
+                >
+                  {Year.map((item, key) => (
+                    <option value={item} key={key}>
+                      {item}
+                    </option>
+                  ))}
+                </select>
               </Col>
             </Row>
 
@@ -182,7 +213,7 @@ export default function Veriform() {
                   required
                 >
                   <option disabled>Select Department</option>
-                  <option value="CE">Computer</option>
+                  <option value="CE">CE</option>
                   <option value="IT">IT</option>
                   <option value="ENTC">ENTC</option>
                   <option value="ELE">Electronics</option>
@@ -197,6 +228,7 @@ export default function Veriform() {
               <Col lg={4} sm={12}>
                 <Form.Control
                   type="text"
+                  readOnly
                   placeholder="Roll Number"
                   name="Roll_No"
                   value={student.Roll_No}
@@ -234,9 +266,9 @@ export default function Veriform() {
 
             <Row>
               <Form.Label column lg={2} sm={12}>
-                Elective
+                {student.Year === "BE" ? "Elective 1" : "Elective"}
               </Form.Label>
-              <Col lg={4} sm={12}>
+              <Col lg={4} sm={12} required>
                 <select
                   className="form-select"
                   aria-label="Default select example"
@@ -244,14 +276,40 @@ export default function Veriform() {
                   onChange={handleChange}
                   required
                 >
-                  {Electives.map((item) => (
-                    <option value={item} key={item}>
+                  {Electives_1.map((item, key) => (
+                    <option value={item} key={key}>
                       {item}
                     </option>
                   ))}
                 </select>
               </Col>
             </Row>
+
+            {student.Year === "BE" ? (
+              <Row>
+                <Form.Label column lg={2} sm={12}>
+                  ILO
+                </Form.Label>
+                <Col lg={4} sm={12}>
+                  <select
+                    className="form-select"
+                    aria-label="Default select example"
+                    name="ILO"
+                    onChange={handleChange}
+                    required
+                  >
+                    {Electives_2.map((item, key) => (
+                      <option value={item} key={key}>
+                        {item}
+                      </option>
+                    ))}
+                  </select>
+                </Col>
+              </Row>
+            ) : (
+              <></>
+            )}
+
             <Button className="m-3" variant="danger" type="submit">
               Submit
             </Button>

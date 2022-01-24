@@ -2,6 +2,7 @@ import { loginUser, postExamForm } from "../api/api";
 import Types from "./types";
 import axios from "axios";
 import { ToastifyDanger, ToastifySuccess } from "../components/Toast/Toastify";
+import { DecryptObjectData, EncryptObjectData } from "../utils/Hash/Hash";
 export const baseURL = "http://localhost:2000/api";
 
 export const testAction = (state, dispatch) => {
@@ -19,12 +20,12 @@ export const testAction = (state, dispatch) => {
 };
 
 // Auth Actions  ---- common for both
-export const login = async (user, dispatch) => {
-  console.log("api will be called");
+export const Login = async (user, dispatch) => {
   let userData = await axios
     .post("http://localhost:2000/api/login", user)
     .then((res) => {
       console.log("res sent from api ", res);
+      localStorage.setItem("DATA", EncryptObjectData(res?.data));
       return res?.data;
     })
     .catch((err) => {
@@ -32,6 +33,8 @@ export const login = async (user, dispatch) => {
       return null;
       // return login fail type
     });
+  console.log("api will be called");
+
   //  userData = {
   //  faculty: {id: 124, Sdrn: 123, First_name: 'JAY', Middle_name: 'SHAFEEN', Last_name: 'GHAYAR', …}
   // message: "Authentication Successful"
@@ -41,12 +44,12 @@ export const login = async (user, dispatch) => {
   if (userData && userData.faculty) {
     return dispatch({
       type: Types.LOGIN_FACULTY,
-      payload: userData,
+      payload: DecryptObjectData(localStorage.getItem("DATA")),
     });
   } else if (userData && userData.student) {
     return dispatch({
       type: Types.LOGIN_STUDENT,
-      payload: userData,
+      payload: DecryptObjectData(localStorage.getItem("DATA")),
     });
   } else {
     ToastifyDanger("Authentication Fail");
@@ -207,4 +210,12 @@ export const getHallTicket = async ({ department, semester }, dispatch) => {
       //   type: Types.GENERATE_HALL_TICKET_SUCESS,
       // });
     });
+};
+
+export const subjectData = async (Sem, Elective) => {
+  const subjectsOfStudent = await axios.get(
+    `http://localhost:2000/api/subject/getSubjects?Sem=${Sem}&Elective=${Elective}`
+  );
+
+  return subjectsOfStudent;
 };

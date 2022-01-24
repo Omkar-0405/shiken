@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { Context } from "../../context/context";
+import { userData } from "../../routers/AdminProtectedRoute";
+import { EncryptObjectData } from "../../utils/Hash/Hash";
 import FacultyForm from "./FacultyForm";
 import "./LoginForm.css";
 import StudentForm from "./StudentForm";

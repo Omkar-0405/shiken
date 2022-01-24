@@ -1,3 +1,4 @@
+import { EncryptObjectData } from "../utils/Hash/Hash";
 import Types from "./types";
 export const initialState = {
   auth: {
@@ -111,6 +112,12 @@ export const reducer = (state = initialState, action) => {
         user: { ...action?.payload?.student },
       };
 
+    // case Types.STATE_PERSIST:
+    //   return {
+    //     ...state,
+    //     ...action.payload,
+    //   };
+
     case Types.LOGIN_FAILED:
       return {
         ...state,
@@ -124,7 +131,7 @@ export const reducer = (state = initialState, action) => {
       };
 
     case Types.LOGOUT:
-      localStorage.clear();
+      localStorage.setItem("DATA", EncryptObjectData(initialState));
       return initialState;
 
     case Types.APPLY_FILTER:

@@ -6,7 +6,7 @@ import {
   VerificationButton,
 } from "../../components/button/Button";
 import "./ViewForm.css";
-import { verifyByRoll } from "../../context/actions";
+import { subjectData, verifyByRoll } from "../../context/actions";
 import { Context } from "../../context/context";
 import { useHistory } from "react-router-dom";
 import {
@@ -14,11 +14,14 @@ import {
   ToastifySuccess,
 } from "../../components/Toast/Toastify";
 import { ToastContainer } from "react-toastify";
+import { useEffect } from "react";
 
 export const ViewForm = (props) => {
   const { state, dispatch } = useContext(Context);
   const [disabled, setDisabled] = useState(true);
   const [isVerified, setVerified] = useState(false);
+  const [EachStudSubjData, setEachStudSubjData] = useState([]);
+
   React.useEffect(() => {
     if (isVerified == true) {
       let verifiedStudent = state.studentList.find(
@@ -31,6 +34,28 @@ export const ViewForm = (props) => {
     }
     console.log("status of all after verification", state.studentList);
   }, [isVerified]);
+
+  useEffect(() => {
+    console.log("view student props", props);
+    const sem = props.student.Sem;
+    const Elective = () => {
+      if (props.student.Elective) return 1;
+      else return 0;
+    };
+    subjectData(sem, Elective).then(
+      (res) => {
+        console.log("Subjets", res.data);
+        return setEachStudSubjData(res.data);
+      },
+      (err) => {
+        alert(err);
+      }
+    );
+  }, []);
+
+  console.log("EachStudSubjData", EachStudSubjData);
+  const SubjLength = EachStudSubjData.length;
+
   const history = useHistory();
   // console.log("props", props);
   let studentData;
@@ -46,7 +71,7 @@ export const ViewForm = (props) => {
       Mobile_No: 0,
       Mother_Name: "",
       Roll_No: "",
-      Seat_No: 0,
+      Seat_No: "Not avaiable",
       Sem: 0,
       Year: "",
     };
@@ -112,6 +137,7 @@ export const ViewForm = (props) => {
                     <Form.Control
                       type="text"
                       placeholder="Student Name"
+                      readOnly={disabled}
                       value={`${studentData.First_Name} ${studentData.Father_Name} ${studentData.Last_Name} `}
                     />
                   </Col>
@@ -125,6 +151,7 @@ export const ViewForm = (props) => {
                     <Form.Control
                       type="text"
                       placeholder="Roll no"
+                      readOnly={disabled}
                       value={studentData.Roll_No}
                     />
                   </Col>
@@ -139,23 +166,42 @@ export const ViewForm = (props) => {
                       type="text"
                       value={studentData.Department}
                       placeholder="Branch"
-                      disabled={disabled}
+                      readOnly={disabled}
                     />
                   </Col>
                 </Row>
                 <Row>
-                  <Form.Label column lg={4} sm={12}>
-                    Current Form Status
+                  <Form.Label column lg={8} sm={12}>
+                    Current Form Status:
                   </Form.Label>
                   <Col lg={12} sm={12}>
                     <Form.Control
                       type="text"
                       value={studentData.Form_Status}
                       placeholder="Branch"
-                      disabled={disabled}
+                      readOnly={disabled}
                     />
                   </Col>
                 </Row>
+                {/* extra */}
+                {EachStudSubjData.map((data, key) => {
+                  if (key < Math.round(SubjLength / 2))
+                    return (
+                      <Row>
+                        <Form.Label column lg={8} sm={12}>
+                          Subject {key + 1}
+                        </Form.Label>
+                        <Col lg={12} sm={12}>
+                          <Form.Control
+                            type="text"
+                            value={data.Subject_shortname}
+                            placeholder={`Subject ${key + 1}`}
+                            readOnly={disabled}
+                          />
+                        </Col>
+                      </Row>
+                    );
+                })}
               </Col>
 
               {/* RIGHT COLUMN STARTS HERE 
@@ -172,7 +218,7 @@ export const ViewForm = (props) => {
                       type="text"
                       value={studentData.Year}
                       placeholder="Year"
-                      disabled={disabled}
+                      readOnly={disabled}
                     />
                   </Col>
                 </Row>
@@ -186,7 +232,7 @@ export const ViewForm = (props) => {
                       type="text"
                       value={studentData.Sem}
                       placeholder="Sem"
-                      disabled={disabled}
+                      readOnly={disabled}
                     />
                   </Col>
                 </Row>
@@ -200,7 +246,7 @@ export const ViewForm = (props) => {
                       type="text"
                       value={studentData.Email}
                       placeholder="Email"
-                      disabled={disabled}
+                      readOnly={disabled}
                     />
                   </Col>
                 </Row>
@@ -214,10 +260,29 @@ export const ViewForm = (props) => {
                       type="text"
                       value={studentData.Mobile_No}
                       placeholder="Phone Number"
-                      disabled={disabled}
+                      readOnly={disabled}
                     />
                   </Col>
                 </Row>
+                {/* extra */}
+                {EachStudSubjData.map((data, key) => {
+                  if (key >= Math.round(SubjLength / 2))
+                    return (
+                      <Row>
+                        <Form.Label column lg={8} sm={12}>
+                          Subject {key + 1}
+                        </Form.Label>
+                        <Col lg={12} sm={12}>
+                          <Form.Control
+                            type="text"
+                            value={data.Subject_shortname}
+                            placeholder={`Subject ${key + 1}`}
+                            readOnly={disabled}
+                          />
+                        </Col>
+                      </Row>
+                    );
+                })}
               </Col>
             </Row>
             <div

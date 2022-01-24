@@ -1,11 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../../context/context";
+import { DecryptObjectData } from "../../utils/Hash/Hash";
 import "./layout.css";
 import { StudentRoutes, FacultyRoutes } from "./SideBarData";
 
 function SideBar() {
   const { state } = React.useContext(Context);
+  const userData = DecryptObjectData(localStorage.getItem("DATA"));
+  console.log("userdata in nav", userData);
   return (
     <div className="SideBar">
       <ul className="SideBarList">
@@ -13,7 +16,7 @@ function SideBar() {
         map routes as per context roles ! check auth 
         */}
 
-        {state?.auth?.userType == "Faculty" ? (
+        {userData?.faculty ? (
           <>
             {FacultyRoutes.map((val, key) => {
               return (

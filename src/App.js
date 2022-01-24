@@ -18,61 +18,59 @@ import { createContext } from "react";
 import { GenerateHallTicket } from "./pages/GenerateHallTicket/index";
 import { UploadCsv } from "./pages/UploadCsv/index";
 import AddSubj from "./containers/AddStudentSubj/AddSubj";
-import ProtectedRoute from "./routers/ProtectedRoute";
-
-export const DataToken = createContext();
+import AdminProtectedRoute from "./routers/AdminProtectedRoute";
+import StudentProtectedRoute from "./routers/StudentProtectedRoute";
 
 function App() {
   return (
     <div className="App">
-      <DataToken.Provider>
-        <Router>
-          <Switch>
-            {/* public route */}
-            <Route exact path="/">
-              <LoginForm />
-            </Route>
+      <Router>
+        <Switch>
+          {/* public route */}
+          <Route exact path="/">
+            <LoginForm />
+          </Route>
 
-            {/* routes for admin only*/}
-            <Route path="/form-status">
-              <ProtectedRoute component={ViewAllStudents} />
-            </Route>
+          {/* routes for admin only*/}
 
-            <Route path="/fac_home">
-              <ProtectedRoute component={FacHome} />
-            </Route>
+          <AdminProtectedRoute
+            exact
+            path="/form-status"
+            component={ViewAllStudents}
+          />
 
-            <Route path="/hall-ticket">
-              <ProtectedRoute component={GenerateHallTicket} />
-            </Route>
+          <AdminProtectedRoute exact path="/fac_home" component={FacHome} />
 
-            <Route path="/upload-csv">
-              <ProtectedRoute component={UploadCsv} />
-            </Route>
+          <AdminProtectedRoute
+            exact
+            path="/hall-ticket"
+            component={GenerateHallTicket}
+          />
 
-            <Route path="/addsubj">
-              <ProtectedRoute component={AddSubj} />
-            </Route>
+          <AdminProtectedRoute exact path="/upload-csv" component={UploadCsv} />
 
-            <Route path="/student/:slug">
-              <ProtectedRoute component={ViewStudentPage} />
-            </Route>
+          <AdminProtectedRoute exact path="/addsubj" component={AddSubj} />
 
-            {/* routes for verified students only*/}
-            <Route path="/stud_home">
-              <ProtectedRoute component={StudHome} />
-            </Route>
+          <AdminProtectedRoute
+            exact
+            path="/student/:slug"
+            component={ViewStudentPage}
+          />
 
-            <Route path="/form">
-              <ProtectedRoute component={ExamForm} />
-            </Route>
+          {/* routes for verified students only*/}
 
-            <Route exact path="/details">
-              <ProtectedRoute component={ViewStudentPage} />
-            </Route>
-          </Switch>
-        </Router>
-      </DataToken.Provider>
+          <StudentProtectedRoute exact path="/stud_home" component={StudHome} />
+
+          <StudentProtectedRoute exact path="/form" component={ExamForm} />
+
+          <StudentProtectedRoute
+            exact
+            path="/details"
+            component={ViewStudentPage}
+          />
+          <Redirect to={"/"} />
+        </Switch>
+      </Router>
     </div>
   );
 }
