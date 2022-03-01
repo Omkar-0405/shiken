@@ -1,16 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import App from './App';
-import { ContextProvider} from './context/context';
+import React from "react";
+import ReactDOM from "react-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import App from "./App";
+import { ContextProvider } from "./context/context";
 
 ReactDOM.render(
   <React.StrictMode>
-
     <ContextProvider>
       <App />
-    </ContextProvider>,
-    
+    </ContextProvider>
+    ,
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );

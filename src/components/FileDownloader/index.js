@@ -15,7 +15,7 @@ const files = [
 ];
 
 const FileDownloader = (props) => {
-  //  let {Roll_No } =  props
+  let { Roll_No } = props;
   // const [downloadFile, downloaderComponentUI] = useFileDownloader();
 
   // const download = (file) => downloadFile(file);
@@ -64,7 +64,7 @@ const FileDownloader = (props) => {
                     <div
                       className="btn btn-primary cursor-pointer text-white"
                       onClick={() => {
-                        download(123);
+                        download({ Roll_No });
                       }}
                     >
                       Download <FaDownload />

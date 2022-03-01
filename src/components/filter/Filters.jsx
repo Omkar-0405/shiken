@@ -47,7 +47,7 @@ function Filter(props) {
                   onChange={(e) => setDepartment(e.target.value)}
                 >
                   <option value={null}>Select Department</option>
-                  <option value="CE">Computer</option>
+                  <option value="comps">Computer</option>
                   <option value="IT">Information Technology</option>
                   <option value="EXTC">EXTC</option>
                   <option value="ELE">Electronics</option>

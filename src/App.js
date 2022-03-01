@@ -20,6 +20,7 @@ import { UploadCsv } from "./pages/UploadCsv/index";
 import AddSubj from "./containers/AddStudentSubj/AddSubj";
 import AdminProtectedRoute from "./routers/AdminProtectedRoute";
 import StudentProtectedRoute from "./routers/StudentProtectedRoute";
+import { EncryptObjectData } from "./utils/Hash/Hash";
 
 function App() {
   return (

@@ -32,8 +32,7 @@ export default function Veriform() {
     Last_Name: userData?.student?.Last_Name ?? "",
     Mobile_No: userData?.student?.Mobile_No ?? "",
     Year: "",
-    Department:
-      userData?.student?.Branch === "Comps" ? "CE" : userData?.student?.Branch,
+    Department: userData?.student?.Branch,
     Roll_No: userData?.student?.Roll_No ?? "",
     Sem: "",
     Elective: Electives_1[0],
@@ -213,7 +212,7 @@ export default function Veriform() {
                   required
                 >
                   <option disabled>Select Department</option>
-                  <option value="CE">CE</option>
+                  <option value="comps">CE</option>
                   <option value="IT">IT</option>
                   <option value="ENTC">ENTC</option>
                   <option value="ELE">Electronics</option>

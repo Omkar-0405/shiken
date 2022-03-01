@@ -45,7 +45,9 @@ export const ViewForm = (props) => {
     subjectData(sem, Elective).then(
       (res) => {
         console.log("Subjets", res.data);
-        return setEachStudSubjData(res.data);
+        if (res.data?.error?.Message)
+          return ToastifyDanger(res.data?.error?.Message);
+        else return setEachStudSubjData(res.data);
       },
       (err) => {
         alert(err);
@@ -184,6 +186,7 @@ export const ViewForm = (props) => {
                   </Col>
                 </Row>
                 {/* extra */}
+
                 {EachStudSubjData.map((data, key) => {
                   if (key < Math.round(SubjLength / 2))
                     return (

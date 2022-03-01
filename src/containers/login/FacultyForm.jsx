@@ -16,7 +16,14 @@ const FacultyForm = (props) => {
   const [sdrn, setNumber] = useState("");
   const [password, setPassword] = useState("");
   const his = useHistory();
-  const userData = DecryptObjectData(localStorage.getItem("DATA"));
+
+  // const userData = DecryptObjectData(localStorage.getItem("DATA"));
+  // let userData = " ";
+  // if (DecryptObjectData(localStorage.getItem("DATA")) !== "12345") {
+  //   userData = DecryptObjectData(localStorage.getItem("DATA"));
+  // } else {
+  //   userData = DecryptObjectData(localStorage.getItem("DATA"));
+  // }
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -26,31 +33,50 @@ const FacultyForm = (props) => {
       usertype: "faculty",
     };
 
-    Login(auth, dispatch);
+    Login(auth, dispatch).then(
+      (res) => {
+        let userData = DecryptObjectData(localStorage.getItem("DATA"));
+        if (
+          // state?.auth?.isAuthenticated && state?.auth?.userType == "Faculty"
+          userData?.faculty &&
+          userData.message === "Authentication Successful"
+        ) {
+          // let encryptedToken = EncryptStringData(state.auth.token);
+          // localStorage.setItem("faculty_token", encryptedToken);
+          // localStorage.setItem("Role", state.auth.userType);
+          ToastifySuccess("Login Successfull");
+          return setTimeout(() => {
+            his.push("/fac_home");
+          }, 1200);
+        } else {
+          return his.push("/");
+        }
+      },
+      (err) => console.log("bhai login me kuch gadbad hai", err)
+    );
 
     setNumber("");
     setPassword("");
   };
 
-  React.useEffect(() => {
-    // const userData = DecryptObjectData(localStorage.getItem("DATA"));
+  // React.useEffect(() => {
+  //   if (
+  //     // state?.auth?.isAuthenticated && state?.auth?.userType == "Faculty"
+  //     userData?.faculty &&
+  //     userData.message === "Authentication Successful"
+  //   ) {
+  //     // let encryptedToken = EncryptStringData(state.auth.token);
+  //     // localStorage.setItem("faculty_token", encryptedToken);
+  //     // localStorage.setItem("Role", state.auth.userType);
+  //     ToastifySuccess("Login Successfull");
+  //     return setTimeout(() => {
+  //       his.push("/fac_home");
+  //     }, 1200);
+  //   } else {
+  //     return his.push("/");
+  //   }
+  // }, [state]);
 
-    if (
-      // state?.auth?.isAuthenticated && state?.auth?.userType == "Faculty"
-      userData?.faculty &&
-      userData.message === "Authentication Successful"
-    ) {
-      // let encryptedToken = EncryptStringData(state.auth.token);
-      // localStorage.setItem("faculty_token", encryptedToken);
-      // localStorage.setItem("Role", state.auth.userType);
-      ToastifySuccess("Login Successfull");
-      return setTimeout(() => {
-        his.push("/fac_home");
-      }, 1200);
-    } else {
-      return his.push("/");
-    }
-  }, [state]);
   return (
     <>
       <form action="" onSubmit={submitHandler}>

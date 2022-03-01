@@ -13,14 +13,19 @@ import { Context } from "../../context/context";
 import { DecryptObjectData, EncryptStringData } from "../../utils/Hash/Hash";
 
 const StudentForm = (props) => {
-  // const userData = DecryptObjectData(localStorage.getItem("DATA"));
-
   const his = useHistory();
   const { state, dispatch } = useContext(Context);
 
   const [rollno, setRollNo] = useState("");
   const [password, setPassword] = useState("");
-  const userData = DecryptObjectData(localStorage.getItem("DATA"));
+  // let userData = DecryptObjectData(localStorage.getItem("DATA"));
+
+  // let userData = " ";
+  // if (DecryptObjectData(localStorage.getItem("DATA")) !== "12345") {
+  //   userData = DecryptObjectData(localStorage.getItem("DATA"));
+  // } else {
+  //   userData = DecryptObjectData(localStorage.getItem("DATA"));
+  // }
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -30,30 +35,50 @@ const StudentForm = (props) => {
       usertype: "student",
     };
 
-    Login(auth, dispatch);
+    Login(auth, dispatch).then(
+      (res) => {
+        let userData = DecryptObjectData(localStorage.getItem("DATA"));
+        if (
+          // state?.auth?.isAuthenticated && state?.auth?.userType == "student"
+          userData?.student &&
+          userData?.message === "Authentication Successful"
+        ) {
+          // let encryptedToken = EncryptStringData(state.auth.token);
+          // localStorage.setItem("faculty_token", encryptedToken);
+          // localStorage.setItem("Role", state.auth.userType);
+          ToastifySuccess("Login Successfull");
+          return setTimeout(() => {
+            his.push("/stud_home");
+          }, 1200);
+        } else {
+          return his.push("/");
+        }
+      },
+      (err) => console.log("bhai login me kuch gadbad hai", err)
+    );
 
     //clear form
     setRollNo("");
     setPassword("");
   };
 
-  React.useEffect(() => {
-    if (
-      // state?.auth?.isAuthenticated && state?.auth?.userType == "student"
-      userData?.student &&
-      userData.message === "Authentication Successful"
-    ) {
-      // let encryptedToken = EncryptStringData(state.auth.token);
-      // localStorage.setItem("faculty_token", encryptedToken);
-      // localStorage.setItem("Role", state.auth.userType);
-      ToastifySuccess("Login Successfull");
-      return setTimeout(() => {
-        his.push("/stud_home");
-      }, 1200);
-    } else {
-      return his.push("/");
-    }
-  }, [state]);
+  // React.useEffect(() => {
+  //   if (
+  //     // state?.auth?.isAuthenticated && state?.auth?.userType == "student"
+  //     userData?.student &&
+  //     userData?.message === "Authentication Successful"
+  //   ) {
+  //     // let encryptedToken = EncryptStringData(state.auth.token);
+  //     // localStorage.setItem("faculty_token", encryptedToken);
+  //     // localStorage.setItem("Role", state.auth.userType);
+  //     ToastifySuccess("Login Successfull");
+  //     return setTimeout(() => {
+  //       his.push("/stud_home");
+  //     }, 1200);
+  //   } else {
+  //     return his.push("/");
+  //   }
+  // }, [state]);
 
   return (
     <>
